@@ -54,7 +54,7 @@
                   <h4>  {{ __('Vagas') }}</h4>
               </div>
               <div class="col-md-3 mb-3"> 
-                <a href="{{ route('vaga.create') }}" class="btn btn-dark" >Criar nova vaga</a>
+                <a href="{{ route('vaga.create') }}" class="btn btn-principal" >Criar nova vaga</a>
               </div>
           </div>
           <div class="table-responsive col-md-12">

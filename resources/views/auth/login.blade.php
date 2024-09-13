@@ -7,7 +7,10 @@
     <div class="row justify-content-center mt-5">
         <div class="col-md-6">
             <div class="card">
-                <div class="card-text text-center fs-2 mt-4">{{ __('Login') }}</div>
+                <div class="card-text text-center  mt-2">
+                    <img src="{{ asset('assets/1.png') }}" alt="Logo" class="img-logo">
+                    <div class="text-center" style="font-size: 18px">{{ __('Login') }}</div>
+                </div>
 
                 <div class="card-body p-5">
                     <form method="POST" action="{{ route('login') }}">
@@ -59,9 +62,16 @@
                         <div class="row mb-0">
                             <center>
                                 <div class="col-md-8">
-                                    <button type="submit" class="btn btn-warning">
+                                    <button type="submit" class="btn btn-principal">
                                         {{ __('Acessar') }}
                                     </button>
+                                </div>
+                            </center>
+                        </div>
+                        <div class="row mb-0">
+                            <center>
+                                <div class="col-md-8">
+                                    <a href="{{ route('register') }}" class="btn btn-link-2">Não possui uma conta? Cadastre-se</a>
                                 </div>
                             </center>
                         </div>

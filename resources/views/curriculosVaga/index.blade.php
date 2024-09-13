@@ -44,7 +44,7 @@
                                 </div>
                                 <!-- Adicione outros filtros conforme necessário -->
 
-                                <button type="submit" class="btn btn-primary">Filtrar</button>
+                                <button type="submit" class="btn btn-principal">Filtrar</button>
                             </div>
                         </form>
 

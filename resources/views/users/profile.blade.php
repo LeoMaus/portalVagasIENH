@@ -102,7 +102,7 @@
 
                         <div class="form-group mb-2">
                             <center>
-                                <button type="submit" class="btn btn-dark">
+                                <button type="submit" class="btn btn-principal">
                                     {{ __('Salvar') }}
                                 </button>
                             </center>
@@ -211,7 +211,7 @@
 
                         <div class="form-group mb-2">
                             <center>
-                                <button type="submit" class="btn btn-dark">
+                                <button type="submit" class="btn btn-principal">
                                     {{ __('Salvar') }}
                                 </button>
                             </center>
@@ -252,7 +252,7 @@
                     <p><h6>Você já possui um currículo em nosso sistema! E pode atualizá-lo no formulário abaixo:</h6></p>
                     <p>Data do primeiro envio: {{ $curriculo->created_at->format('d/m/Y') }}</p>
                     <p>Última atualização: {{ $curriculo->updated_at->format('d/m/Y') }}</p>
-                    <a href="{{ route('curriculo.show', [$curriculo->id]) }}" class="btn btn-primary">Visualizar Currículo existente</a>
+                    <a href="{{ route('curriculo.show', [$curriculo->id]) }}" class="btn btn-principal">Visualizar Currículo existente</a>
                 @else
                 @endif
                 <br>
@@ -265,7 +265,7 @@
                 </div>
                 <div class="form-group mb-2">
                     <center>
-                        <button type="submit" class="btn btn-dark">
+                        <button type="submit" class="btn btn-principal">
                             {{ __('Salvar') }}
                         </button>
                     </center>

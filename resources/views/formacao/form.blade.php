@@ -47,7 +47,7 @@
                                 <label for="observacao">Observações</label>
                                 <textarea class="form-control" id="observacao" name="observacao" rows="3">{{ $formacao->observacao ?? '' }}</textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary mt-4">Salvar</button>
+                            <button type="submit" class="btn btn-principal mt-4">Salvar</button>
                             <a href="{{ route('profile') }}" class="btn btn-secondary  mt-4">Voltar</a>
                         </form>
                     </div>

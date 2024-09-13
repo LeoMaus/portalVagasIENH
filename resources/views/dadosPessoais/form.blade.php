@@ -100,7 +100,7 @@
 
                         <div class="form-group mb-2">
                             <center>
-                                <button type="submit" class="btn btn-dark">
+                                <button type="submit" class="btn btn-principal">
                                     {{ __('Salvar') }}
                                 </button>
                             </center>
@@ -217,7 +217,7 @@
 
                         <div class="form-group mb-2">
                             <center>
-                                <button type="submit" class="btn btn-dark">
+                                <button type="submit" class="btn btn-principal">
                                     {{ __('Salvar') }}
                                 </button>
                             </center>

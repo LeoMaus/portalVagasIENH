@@ -47,7 +47,7 @@
                             </div>
 
                             <div class="form-group mb-2" id="opcoes-container">
-                                <button type="button" class="btn btn-primary" id="adicionar-opcao">Adicionar E-mail</button>
+                                <button type="button" class="btn btn-principal" id="adicionar-opcao">Adicionar E-mail</button>
                             </div>
 
                             <div class="form-group mb-2">
@@ -72,7 +72,7 @@
                     @endif
                     <div class="form-group">
                     <!-- Botão de Salvar -->
-                    <button type="submit" class="btn btn-primary">Salvar</button>
+                    <button type="submit" class="btn btn-principal">Salvar</button>
                     </form>
             </div>
             </div>

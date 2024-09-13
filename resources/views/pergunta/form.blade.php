@@ -44,7 +44,7 @@
                             </div>
 
                             <div class="form-group mb-2" id="opcoes-container">
-                                <button type="button" class="btn btn-primary" id="adicionar-opcao">Adicionar Opção</button>
+                                <button type="button" class="btn btn-principal" id="adicionar-opcao">Adicionar Opção</button>
                             </div>
 
                             <div class="form-group mb-2">
@@ -99,7 +99,7 @@
                                 <a type="button" href="{{route('pergunta.index')}}" class="btn btn-secondary">
                                     {{ __('Voltar') }}
                                 </a>
-                                <button type="submit" class="btn btn-dark">
+                                <button type="submit" class="btn btn-principal">
                                     {{ __('Salvar') }}
                                 </button>
                             </center>

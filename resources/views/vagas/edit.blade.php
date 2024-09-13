@@ -76,7 +76,7 @@
                                 <a type="button" href="{{route('vaga.index')}}" class="btn btn-secondary">
                                     {{ __('Voltar') }}
                                 </a>
-                                <button type="submit" class="btn btn-dark">
+                                <button type="submit" class="btn btn-principal">
                                     {{ __('Salvar') }}
                                 </button>
                             </center>

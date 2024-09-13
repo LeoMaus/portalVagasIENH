@@ -37,7 +37,7 @@
                             <h4>  {{ __('Formações') }}</h4>
                         </div>
                         <div class="col-md-3 mb-3">
-                            <a href="{{ route('formacao.create') }}" class="btn btn-dark" >Inserir nova formação</a>
+                            <a href="{{ route('formacao.create') }}" class="btn btn-principal" >Inserir nova formação</a>
                         </div>
                     </div>
                     <div class="table-responsive col-md-12">

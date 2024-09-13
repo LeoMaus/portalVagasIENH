@@ -4,10 +4,13 @@
 @section('content')
 
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8 mt-5">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
             <div class="card">
-                <div class="card-text text-center fs-2 mt-4">{{ __('Cadastre-se') }}</div>
+                <div class="card-text text-center  mt-2">
+                    <img src="{{ asset('assets/1.png') }}" alt="Logo" class="img-logo">
+                    <div class="text-center" style="font-size: 18px">{{ __('Cadastre-se') }}</div>
+                </div>
 
                 <div class="card-body p-5">
                     <form method="POST" action="{{ route('register') }}">
@@ -56,7 +59,7 @@
 
                         <div class="form-group mb-2">
                             <center>
-                                <button type="submit" class="btn btn-warning">
+                                <button type="submit" class="btn btn-principal">
                                     {{ __('Registrar') }}
                                 </button>
                             </center>

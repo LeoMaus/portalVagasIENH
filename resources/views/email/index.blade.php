@@ -41,7 +41,7 @@
                         <p class="card-text">
                             Visualize e edite o modelo de e-mail para notificar a abertura de uma nova vaga.
                         </p>
-                        <a href="{{ route('email.editar.modelo.email', ['template' => 'abertura_vaga']) }}" class="btn btn-primary">Editar</a>
+                        <a href="{{ route('email.editar.modelo.email', ['template' => 'abertura_vaga']) }}" class="btn btn-principal">Editar</a>
                     </div>
                 </div>
 
@@ -51,7 +51,7 @@
                         <p class="card-text">
                             Visualize e edite o modelo de e-mail para dar retorno ao candidato sobre sua candidatura.
                         </p>
-                        <a href="{{ route('email.editar.modelo.email', ['template' => 'retorno_candidato']) }}" class="btn btn-primary">Editar</a>
+                        <a href="{{ route('email.editar.modelo.email', ['template' => 'retorno_candidato']) }}" class="btn btn-principal">Editar</a>
                     </div>
                 </div>
             </div>

@@ -21,7 +21,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.min.js"></script>
     <!-- Include jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Include jQuery Mask -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
     
@@ -31,10 +30,13 @@
 
 <body class="background">
     <div id="app">
+        <!-- Condicional para exibir o nav apenas se a rota não for login -->
+        @if (!Route::is('login'))
+        @if (!Route::is('register'))
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/home') }}">
-                    {{ 'Portal de Vagas' }}
+                    <img src="{{ asset('assets/2.png') }}" alt="Logo" class="img-logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -45,7 +47,6 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -70,27 +71,21 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('email.index') }}">{{ __('Notificações') }}</a>
                         </li>
-
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('pergunta.index') }}">{{ __('Perguntas') }}</a>
                         </li>
-
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('vaga.index') }}">{{ __('Vagas') }}</a>
                         </li>
-
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('users') }}">{{ __('Usuários') }}</a>
                         </li>
-
                         <!-- Fim menu usuário administrador -->
                         @endif
 
                         @if(Auth::user()->role == 'user')
                         <!-- Menu usuário padrão -->
-
                         <li class="nav-item">
-                        </li>
                             <a class="nav-link" href="{{ route('profile') }}">{{ __('Perfil') }}</a>
                         </li>
                         <li class="nav-item">
@@ -98,11 +93,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/home') }}">{{ __('Vagas') }}</a>
-                        <li class="nav-item">
+                        </li>
                         <!-- Fim menu usuário padrão -->
                         @endif
-
-
                         @endauth
 
                         <li class="nav-item dropdown">
@@ -116,7 +109,6 @@
                                                     document.getElementById('home-form').submit();">
                                     {{ __('Home') }}
                                 </a>
-
                                 <form id="home-form" action="{{ route('home') }}" method="GET" class="d-none">
                                     @csrf
                                 </form>
@@ -125,20 +117,18 @@
                                                     document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
-
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
                             </div>
-
-
                         </li>
-
                         @endguest
                     </ul>
                 </div>
             </div>
         </nav>
+        @endif
+        @endif
 
         <main class="py-4">
             @yield('content')

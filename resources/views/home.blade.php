@@ -17,13 +17,13 @@
 @endif
     <div class="col-md-12">
         @if(Auth::user()->role == 'user')
-        <h2 class="text-center mt-5"> Olá,  {{ Auth::user()->name }} </h2>
-        <p  class="text-center">Envie seu currículo online e venha trabalhar conosco!</p>
+        <h2 class="text-center mt-5 text-white"> Olá,  {{ Auth::user()->name }} </h2>
+        <p  class="text-center text-white">Envie seu currículo online e venha trabalhar conosco!</p>
         @endif
 
         @if(Auth::user()->role == 'admin')
-        <h2 class="text-center mt-5">{{ __('Vagas disponíveis') }}</h2>
-        <p  class="text-center">Gerencie suas vagas em aberto!</p>
+        <h2 class="text-center mt-5 text-white">{{ __('Vagas disponíveis') }}</h2>
+        <p  class="text-center text-white">Gerencie suas vagas em aberto!</p>
         @endif
     </div>
     <div class="row justify-content-center mt-5">
@@ -44,7 +44,7 @@
                         </div>
                     </div>
                     @if(Auth::user()->role == 'user')
-                    <a href="{{ route('candidatar.index', $vaga->id ) }}" class="btn btn-dark mt-3"> Candidate-se</a>
+                    <a href="{{ route('candidatar.index', $vaga->id ) }}" class="btn btn-principal mt-3"> Candidate-se</a>
                     @endif
                 </div>
             </div>

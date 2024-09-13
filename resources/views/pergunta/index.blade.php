@@ -57,7 +57,7 @@
                     <h4>  {{ __('Perguntas') }}</h4>
                 </div>
                 <div class="col-md-3 mb-3">
-                    <a href="{{ route('pergunta.create') }}" class="btn btn-dark" >Criar nova pergunta</a>
+                    <a href="{{ route('pergunta.create') }}" class="btn btn-principal" >Criar nova pergunta</a>
                 </div>
             </div>
             <div class="table-responsive col-md-12">

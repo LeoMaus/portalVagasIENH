@@ -7,8 +7,8 @@
     <div class="row">
 
         <div class="col-md-12">
-            <h2 class="text-center mt-5">{{ __('Vagas') }}</h2>
-            <p  class="text-center">Envie seu currículo online e venha trabalhar conosco</p>
+            <h2 class="text-center mt-5 text-white">{{ __('Vagas') }}</h2>
+            <p class="text-center text-white">Envie seu currículo online e venha trabalhar conosco</p>
         </div>
     </div>
     <div class="row justify-content-center mt-5">
@@ -31,7 +31,7 @@
                             <p class="card-text">{{ $vaga->unidade }}</p>
                         </div>
                     </div>
-                    <a href="{{ route('login') }}" class="btn btn-dark mt-3"> Candidate-se</a>
+                    <a href="{{ route('login') }}" class="btn btn-principal mt-3"> Candidate-se</a>
                 </div>
             </div>
         </div>
