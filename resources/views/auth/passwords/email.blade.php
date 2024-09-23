@@ -5,10 +5,12 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8 mt-5">
+        <div class="col-md-6 mt-5">
             <div class="card">
-                <div class="card-text text-center fs-2 mt-4">{{ __('Recuperar senha') }}</div>
-
+            <div class="card-text text-center  mt-2">
+                    <img src="{{ asset('assets/1.png') }}" alt="Logo" class="img-logo">
+                    <div class="text-center" style="font-size: 18px">{{ __('Recuperar senha') }}</div>
+                </div>
                 <div class="card-body p-5">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -33,7 +35,7 @@
 
                         <div class="row mb-0 mt-4">
                             <center>
-                                <button type="submit" class="btn btn-warning">
+                                <button type="submit" class="btn btn-principal">
                                     {{ __('Recuperar senha') }}
                                 </button>
                             </center>

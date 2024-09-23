@@ -33,6 +33,8 @@
         <!-- Condicional para exibir o nav apenas se a rota não for login -->
         @if (!Route::is('login'))
         @if (!Route::is('register'))
+        @if (!Route::is('password.request'))
+
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/home') }}">
@@ -127,6 +129,7 @@
                 </div>
             </div>
         </nav>
+        @endif
         @endif
         @endif
 
