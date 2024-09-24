@@ -83,6 +83,8 @@ class CandidatoController extends Controller
         // Preencha os campos dos dados pessoais com base no request
         $dadosPessoais->data_nascimento = $request->input('data_nascimento');
         $dadosPessoais->habilidades = $request->input('habilidades');
+        $dadosPessoais->link = $request->input('link');
+        @dd($request->input('link'));
         $dadosPessoais->endereco_id = $endereco->id;
         $dadosPessoais->contato_id = $contato->id;
 

@@ -173,7 +173,7 @@
                             <div class="col">
                                 <label for="estado">{{ __('Estado') }}</label>
                                 <div class="list-group">
-                                    <select class="form-select form-select-md mb-3" aria-label="Large select example" id="estado" type="estado" class="form-control @error('estado') is-invalid @enderror" name="estado" value="{{ old('estado') }}" required autocomplete="estado">
+                                    <select class="form-select form-select-md" aria-label="Large select example" id="estado" type="estado" class="form-control @error('estado') is-invalid @enderror" name="estado" value="{{ old('estado') }}" required autocomplete="estado">
                                         @foreach ($estados as $estado)
                                             <label class="list-group-item">
                                             <option value="{{ $estado->id }}" @if ($estado->nome === 'Rio Grande do Sul') selected @endif>
@@ -192,7 +192,7 @@
                             </div>
                             <div class="col">
                                 <label for="cidade">{{ __('Cidade') }}</label>
-                                <select class="form-select form-select-md mb-3" aria-label="Large select example" id="cidade" type="cidade" class="form-control @error('cidade') is-invalid @enderror" name="cidade"  required autocomplete="cidade">
+                                <select class="form-select form-select-md" aria-label="Large select example" id="cidade" type="cidade" class="form-control @error('cidade') is-invalid @enderror" name="cidade"  required autocomplete="cidade">
                                     <option value="">Selecione um estado primeiro</option>
                                 </select>
 
@@ -202,6 +202,18 @@
                                     </span>
                                 @enderror
                             </div>                        
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <label for="link">{{ __('Link Externo') }}</label>
+                            <input id="link" type="text" class="form-control @error('link') is-invalid @enderror" link="link" value="{{ $user->dadosPessoais->link }}" required autocomplete="link" autofocus value="{{ $user->dadosPessoais->link }}">
+
+                            @error('link')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        
                         </div>
 
                         <div class="form-group mb-4">
