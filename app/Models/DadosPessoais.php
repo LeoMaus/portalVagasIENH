@@ -18,6 +18,7 @@ class DadosPessoais extends Model
         'user_id',
         'objetivo_vaga',
         'habilidades',
+        'link'
     ];
 
     public function contato()

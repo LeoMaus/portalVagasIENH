@@ -206,7 +206,7 @@
 
                         <div class="form-group mb-2">
                             <label for="link">{{ __('Link Externo') }}</label>
-                            <input id="link" type="text" class="form-control @error('link') is-invalid @enderror" link="link" value="{{ $user->dadosPessoais->link }}" required autocomplete="link" autofocus value="{{ $user->dadosPessoais->link }}">
+                            <input id="link" type="text"  name="link" class="form-control @error('link') is-invalid @enderror" value="{{ optional($user->dadosPessoais)->link }}" required autocomplete="link" autofocus>
 
                             @error('link')
                                 <span class="invalid-feedback" role="alert">
