@@ -74,10 +74,7 @@
                             <a class="nav-link" href="{{ route('email.index') }}">{{ __('Notificações') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('pergunta.index') }}">{{ __('Perguntas') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('vaga.index') }}">{{ __('Vagas') }}</a>
+                            <a class="nav-link" href="{{ route('cadastros.index') }}">{{ __('Cadastros') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('users') }}">{{ __('Usuários') }}</a>

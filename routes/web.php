@@ -51,7 +51,8 @@ Route::group(['middleware' => 'auth'], function () {
     # rota para editar dados pessoais
     Route::put('/editDadosPessoais/{id}', [Controllers\UsersController::class, 'editDadosPessoais'])->name('editDadosPessoais');
 
-
+    # rota para página de cadastros
+    Route::get('/cadastros', [Controllers\CadastrosController::class, 'index'])->name('cadastros.index');
    
 
 
