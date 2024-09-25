@@ -75,6 +75,7 @@
                   <td>{{ $vaga->titulo }} </td>
                   <td>{{ $vaga->unidade }}</td>
                   <td>{{ $vaga->status }}</td>
+                  <td>{{ $vaga->descricao }}</td>
                   <td>{{$vaga->created_at}}</td>
                   <td class='actions'>
                     <a class='btn btn-warning btn-xs' href="{{ route('vaga.edit', ['vaga' => $vaga->id]) }}"><span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Editar</a>

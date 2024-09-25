@@ -20,7 +20,8 @@ class Vaga extends Model
     protected $fillable = [
         'titulo',
         'unidade',
-        'status'
+        'status',
+        'descricao',
     ];
 
     public function candidaturas()

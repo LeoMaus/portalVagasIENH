@@ -85,6 +85,7 @@ class VagasController extends Controller
             'titulo' => $request->input('titulo'),
             'unidade' => $request->input('unidade'),
             'status' => $request->input('status'),
+            'descricao' => $request->input('descricao')
         ]);
         // Busca o email no banco de dados
         $email = Email::where('template', 'abertura_vaga')->first();

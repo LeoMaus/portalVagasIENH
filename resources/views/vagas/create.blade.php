@@ -68,6 +68,18 @@
                         
                         </div>
 
+                        <div class="form-group mb-4">
+                            <label for="descricao">{{ __('Descrição da vaga') }}</label>
+                            <textarea id="descricao" class="form-control @error('descricao') is-invalid @enderror" name="descricao" placeholder="Descreva aqui a vaga" required>{{ old('descricao') }}</textarea>
+                        
+                            @error('descricao')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        
+
                         <div class="form-group mb-2">
                             <center>
                                 <a type="button" href="{{route('vaga.index')}}" class="btn btn-secondary">
