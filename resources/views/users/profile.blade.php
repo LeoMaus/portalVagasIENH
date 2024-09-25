@@ -61,7 +61,7 @@
 
                         <div class="form-group mb-2">
                             <label for="name">{{ __('Nome') }}</label>
-                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autocomplete="name" autofocus value="{{ $user->nome }}">
+                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autocomplete="name" autofocus>
 
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -131,6 +131,30 @@
                     <form method="POST" action="{{ route('candidato.update', ['candidato' => $user->id]) }}" > 
                         @csrf
                         @method('PUT')
+                        <label class="mb-1" for="tipo_cadastro">{{ __('Selecione o tipo do cadastro:') }}</label>
+                        <div class="form-row">
+                            <!-- Tipo de Pessoa -->
+                            <div class="col mb-3">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="pf_pj" id="inlineRadio1" value="PF" required
+                                        {{ $user->pf_pj === 'PF' ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="inlineRadio1">Pessoa Física</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="pf_pj" id="inlineRadio2" value="PJ" required
+                                        {{ $user->pf_pj === 'PJ' ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="inlineRadio2">Pessoa Jurídica</label>
+                                </div>
+                            </div>
+                        
+                            <!-- Campo CPF/CNPJ -->
+                            <div class="col mb-3" id="cpfCnpjContainer" style="{{ $user->pf_pj ? 'display:block;' : 'display:none;' }}">
+                                <label for="cpfCnpjInput" id="cpfCnpjLabel">{{ $user->pf_pj === 'PJ' ? 'CNPJ' : 'CPF' }}</label>
+                                <input id="cpfCnpjInput" type="text" class="form-control" name="cpf_cnpj" value="{{ $user->cpf_cnpj }}"
+                                    placeholder="{{ $user->pf_pj === 'PJ' ? 'Digite seu CNPJ' : 'Digite seu CPF' }}">
+                            </div>
+                        </div>
+                        
 
                         <div class="form-group row mb-2">
                             <div class="col">
@@ -206,7 +230,7 @@
 
                         <div class="form-group mb-2">
                             <label for="link">{{ __('Link Externo') }}</label>
-                            <input id="link" type="text"  name="link" class="form-control @error('link') is-invalid @enderror" value="{{ optional($user->dadosPessoais)->link }}" required autocomplete="link" autofocus>
+                            <input id="link" type="text"  name="link" class="form-control @error('link') is-invalid @enderror" value="{{ optional($user->dadosPessoais)->link }}" required autocomplete="link" autofocus placeholder="Linkedin ou portfólio">
 
                             @error('link')
                                 <span class="invalid-feedback" role="alert">
@@ -309,6 +333,7 @@
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
 <script>
     // Função para carregar cidades com base no estado pré-selecionado
@@ -338,13 +363,34 @@
     // Chame a função quando a página for carregada
     $(document).ready(function() {
         carregarCidadesParaEstadoSelecionado();
+
+        // Função para exibir CPF ou CNPJ com máscara dinâmica
+        $('input[name="pf_pj"]').on('change', function() {
+            var selectedValue = $(this).val();
+            
+            if (selectedValue === 'PF') {
+                // Exibe o campo de CPF com a máscara correspondente
+                $('#cpfCnpjLabel').text('CPF');
+                $('#cpfCnpjInput').attr('placeholder', 'Digite seu CPF');
+                $('#cpfCnpjInput').val('');  // Limpa o valor anterior
+                $('#cpfCnpjContainer').show();
+                $('#cpfCnpjInput').mask('000.000.000-00');
+            } else if (selectedValue === 'PJ') {
+                // Exibe o campo de CNPJ com a máscara correspondente
+                $('#cpfCnpjLabel').text('CNPJ');
+                $('#cpfCnpjInput').attr('placeholder', 'Digite seu CNPJ');
+                $('#cpfCnpjInput').val('');  // Limpa o valor anterior
+                $('#cpfCnpjContainer').show();
+                $('#cpfCnpjInput').mask('00.000.000/0000-00');
+            }
+        });
     });
 
     // Adicione um evento change para carregar cidades quando o estado for alterado
     $('#estado').change(function() {
         carregarCidadesParaEstadoSelecionado();
     });
- 
+
     document.getElementById('adicionar-formacao').addEventListener('click', function() {
         let input = document.getElementById('input_option');
 
@@ -359,8 +405,8 @@
         input.value = '';
 
         attOptions();
-
     });
 </script>
+
 
 @endsection

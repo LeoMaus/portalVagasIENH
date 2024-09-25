@@ -130,6 +130,7 @@
                     <form method="POST" action="{{ route('candidato.update', ['id' => $candidato->id]) }}" >
                         @csrf
                         @method('PUT')
+                        
                         <div class="form-group mb-2">
                             <label for="nascimento">{{ __('Data de nascimento') }}</label>
                             <input id="data_nascimento" type="date" class="form-control @error('nascimento') is-invalid @enderror" name="data_nascimento" value="" required autocomplete="data_nascimento" autofocus>

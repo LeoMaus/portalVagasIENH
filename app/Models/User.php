@@ -28,7 +28,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role'
+        'role',
+        'pf_pj',
+        'cpf_cnpj'
     ];
 
     /**

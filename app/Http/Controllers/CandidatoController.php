@@ -60,6 +60,12 @@ class CandidatoController extends Controller
             return redirect()->route('profile')->with('error', 'Usuário não encontrado.');
         }
 
+
+        // inclusão de dados do user
+        $user->pf_pj = $request->input('pf_pj');
+        $user->cpf_cnpj = $request->input('cpf_cnpj');
+        $user->save();
+
         // Verifique se já existe um registro de endereço para este usuário
         $endereco = $user->dadosPessoais->endereco ?? new Endereco();
         $endereco->cep = $request->input('cep');
