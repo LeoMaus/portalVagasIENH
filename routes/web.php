@@ -5,6 +5,7 @@ use App\Http\Controllers;
 
 use App\Http\Controllers\PerguntaController;
 use App\Http\Controllers\CandidatoController;
+use App\Http\Controllers\FuncaoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +67,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::name('store')   ->post('',               [$class, 'store']);
         Route::name('update')  ->put('{vaga}',          [$class, 'update']);
         Route::name('destroy') ->delete('{vaga}',       [$class, 'destroy']);
+    });
+
+    Route::name('funcao.')->prefix('funcao')->group(function () {
+        $class = Controllers\FuncaoController::class;
+        Route::name('index')   ->get('',                [$class, 'index']);
+        Route::name('form')    ->get('form',            [$class, 'form']);
     });
 
 
