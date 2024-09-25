@@ -34,12 +34,12 @@
 
                         @php
                             $cards = [
-                                ['title' => 'Unidade de negócio', 'description' => 'Visualize e edite as unidades de negócio.', 'template' => 'pergunta.index'],
-                                ['title' => 'Perguntas', 'description' => 'Visualize e edite as perguntas desejadas.', 'template' => 'pergunta.index', ],
-                                ['title' => 'Vagas', 'description' => 'Gerencie e edite as informações das vagas cadastradas.', 'template' => 'vaga.index'],
-                                ['title' => 'Área de atuação', 'description' => 'Visualize e edite as áreas de atuação  .', 'template' => 'pergunta.index'],
-                                ['title' => 'Cargos', 'description' => 'Gerencie e edite os cargos disponíveis nas vagas.', 'template' => 'pergunta.index'],
-                                ['title' => 'Função', 'description' => 'Visualize e edite as funções específicas para cada cargo.', 'template' => 'pergunta.index']
+                                ['title' => 'Unidade de negócio', 'description' => 'Visualize e edite as unidades de negócio.', 'route' => 'pergunta.index'],
+                                ['title' => 'Perguntas', 'description' => 'Visualize e edite as perguntas desejadas.', 'route' => 'pergunta.index'],
+                                ['title' => 'Vagas', 'description' => 'Gerencie e edite as informações das vagas cadastradas.', 'route' => 'vaga.index'],
+                                ['title' => 'Área de atuação', 'description' => 'Visualize e edite as áreas de atuação.', 'route' => 'pergunta.index'],
+                                ['title' => 'Cargos', 'description' => 'Gerencie e edite os cargos disponíveis nas vagas.', 'route' => 'pergunta.index'],
+                                ['title' => 'Função', 'description' => 'Visualize e edite as funções específicas para cada cargo.', 'route' => 'pergunta.index']
                             ];
                         @endphp
 
@@ -48,7 +48,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $card['title'] }}</h5>
                                     <p class="card-text">{{ $card['description'] }}</p>
-                                    <a href="{{ route($card['template'], ['template' => $card['template']]) }}" class="btn btn-principal">Acessar</a>
+                                    <a href="{{ route($card['route']) }}" class="btn btn-principal">Acessar</a>
                                 </div>
                             </div>
                         @endforeach
