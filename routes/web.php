@@ -73,6 +73,9 @@ Route::group(['middleware' => 'auth'], function () {
         $class = Controllers\FuncaoController::class;
         Route::name('index')   ->get('',                [$class, 'index']);
         Route::name('form')    ->get('form',            [$class, 'form']);
+        Route::name('create')    ->get('create',            [$class, 'create']);
+        Route::name('edit')    ->get('edit',            [$class, 'edit']);
+        Route::name('destroy')    ->get('destroy',            [$class, 'destroy']);
     });
 
 

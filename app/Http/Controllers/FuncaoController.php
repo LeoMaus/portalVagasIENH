@@ -13,13 +13,13 @@ class FuncaoController extends Controller
         $funcoes = Funcao::all();
         
         // Retornar a view com as funções
-        return view('funcao.index', compact('funcoes'));
+        return view('funcao.index', ['funcoes' => $funcoes]);
     }
 
     public function form()
     {
         // Retornar a view para criar uma nova função
-        return view('cadastros.form');
+        return view('funcao.form');
     }
 
     public function store(Request $request)
@@ -37,6 +37,14 @@ class FuncaoController extends Controller
         // Redirecionar para a lista de funções com uma mensagem de sucesso
         return redirect()->route('funcao.index')->with('status', 'Função criada com sucesso!');
     }
+
+    // funcao create 
+    public function create()
+    {
+        // Retornar a view para criar uma nova função
+        return view('funcao.create');
+    }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -86,6 +94,6 @@ class FuncaoController extends Controller
     public function edit(Funcao $funcao)
     {
         // Retornar a view para editar a função
-        return view('funcao.form', compact('funcao'));
+        return view('funcao.edit', compact('funcao'));
     }
 }
