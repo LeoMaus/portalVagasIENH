@@ -51,7 +51,7 @@
 
           <div class="row">
               <div class="col-md-11">
-                  <h4>  {{ __('funcoes') }}</h4>
+                  <h4>  {{ __('funções') }}</h4>
               </div>
               <div class="col-md-3 mb-3"> 
                 <a href="{{ route('funcao.create') }}" class="btn btn-principal" >Criar nova funcao</a>

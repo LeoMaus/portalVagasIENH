@@ -74,8 +74,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::name('index')   ->get('',                [$class, 'index']);
         Route::name('form')    ->get('form',            [$class, 'form']);
         Route::name('create')  ->get('create',          [$class, 'create']);
-        Route::name('edit')    ->get('edit',            [$class, 'edit']);
-        Route::name('destroy') ->get('destroy',         [$class, 'destroy']);
+        Route::name('edit')    ->get('{funcao}/edit',   [$class, 'edit']);
+        Route::name('update')  ->put('{funcao}',        [$class, 'update']);
+        Route::name('destroy') ->delete('{funcao}',     [$class, 'destroy']);
         Route::name('store')   ->post('',               [$class, 'store']);
     });
 
