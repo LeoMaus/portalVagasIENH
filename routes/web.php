@@ -72,7 +72,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::name('funcao.')->prefix('funcao')->group(function () {
         $class = Controllers\FuncaoController::class;
         Route::name('index')   ->get('',                [$class, 'index']);
-        Route::name('form')    ->get('form',            [$class, 'form']);
         Route::name('create')  ->get('create',          [$class, 'create']);
         Route::name('edit')    ->get('{funcao}/edit',   [$class, 'edit']);
         Route::name('update')  ->put('{funcao}',        [$class, 'update']);
@@ -81,6 +80,15 @@ Route::group(['middleware' => 'auth'], function () {
     });
 
 
+    Route::name('area.')->prefix('area')->group(function () {
+        $class = Controllers\areaController::class;
+        Route::name('index')   ->get('',                [$class, 'index']);
+        Route::name('create')  ->get('create',          [$class, 'create']);
+        Route::name('edit')    ->get('{area}/edit',   [$class, 'edit']);
+        Route::name('update')  ->put('{area}',        [$class, 'update']);
+        Route::name('destroy') ->delete('{area}',     [$class, 'destroy']);
+        Route::name('store')   ->post('',               [$class, 'store']);
+    });
 
     # rotas para perguntas
     Route::name('pergunta.')->prefix('pergunta')->group(function () {
