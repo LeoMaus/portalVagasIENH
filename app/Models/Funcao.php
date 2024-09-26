@@ -10,7 +10,7 @@ class Funcao extends Model
     use HasFactory;
 
     // Define o nome da tabela associada ao model
-    protected $table = 'funcoes';
+    protected $table = 'funcao';
 
     // Defina quais campos podem ser preenchidos em massa
     protected $fillable = [

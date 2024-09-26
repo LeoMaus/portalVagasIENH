@@ -13,7 +13,7 @@ class FuncaoController extends Controller
         $funcoes = Funcao::all();
         
         // Retornar a view com as funções
-        return view('funcao.index');
+        return view('funcao.index', compact('funcoes'));
     }
 
     public function form()
@@ -81,5 +81,11 @@ class FuncaoController extends Controller
 
         // Redirecionar para a lista de funções com uma mensagem de sucesso
         return redirect()->route('funcao.index')->with('status', 'Função excluída com sucesso!');
+    }
+
+    public function edit(Funcao $funcao)
+    {
+        // Retornar a view para editar a função
+        return view('funcao.form', compact('funcao'));
     }
 }
