@@ -38,7 +38,7 @@
                                 ['title' => 'Perguntas', 'description' => 'Visualize e edite as perguntas desejadas.', 'route' => 'pergunta.index'],
                                 ['title' => 'Vagas', 'description' => 'Gerencie e edite as informações das vagas cadastradas.', 'route' => 'vaga.index'],
                                 ['title' => 'Área de atuação', 'description' => 'Visualize e edite as áreas de atuação.', 'route' => 'area.index'],
-                                ['title' => 'Cargos', 'description' => 'Gerencie e edite os cargos disponíveis nas vagas.', 'route' => 'pergunta.index'],
+                                ['title' => 'Cargos', 'description' => 'Gerencie e edite os cargos disponíveis nas vagas.', 'route' => 'cargo.index'],
                                 ['title' => 'Função', 'description' => 'Visualize e edite as funções específicas para cada cargo.', 'route' => 'funcao.index']
                             ];
                         @endphp

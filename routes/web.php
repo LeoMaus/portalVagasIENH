@@ -6,6 +6,8 @@ use App\Http\Controllers;
 use App\Http\Controllers\PerguntaController;
 use App\Http\Controllers\CandidatoController;
 use App\Http\Controllers\FuncaoController;
+use App\Http\Controllers\AreaController;
+use App\Http\Controllers\CargoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,12 +83,22 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     Route::name('area.')->prefix('area')->group(function () {
-        $class = Controllers\areaController::class;
+        $class = Controllers\AreaController::class;
         Route::name('index')   ->get('',                [$class, 'index']);
         Route::name('create')  ->get('create',          [$class, 'create']);
         Route::name('edit')    ->get('{area}/edit',   [$class, 'edit']);
         Route::name('update')  ->put('{area}',        [$class, 'update']);
         Route::name('destroy') ->delete('{area}',     [$class, 'destroy']);
+        Route::name('store')   ->post('',               [$class, 'store']);
+    });
+
+    Route::name('cargo.')->prefix('cargo')->group(function () {
+        $class = Controllers\CargoController::class;
+        Route::name('index')   ->get('',                [$class, 'index']);
+        Route::name('create')  ->get('create',          [$class, 'create']);
+        Route::name('edit')    ->get('{cargo}/edit',   [$class, 'edit']);
+        Route::name('update')  ->put('{cargo}',        [$class, 'update']);
+        Route::name('destroy') ->delete('{cargo}',     [$class, 'destroy']);
         Route::name('store')   ->post('',               [$class, 'store']);
     });
 
