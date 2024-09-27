@@ -34,7 +34,7 @@
                         </div>
 
                         <div class="form-group mb-4">
-                            <label for="descricao">{{ __('Descrição da função') }}</label>
+                            <label for="descricao">{{ __('Descrição da área') }}</label>
                             <textarea id="descricao" class="form-control @error('descricao') is-invalid @enderror" name="descricao" placeholder="Descreva aqui a vaga" required>{{ old('descricao') }}</textarea>
                         
                             @error('descricao')

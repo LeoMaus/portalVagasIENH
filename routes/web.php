@@ -8,6 +8,7 @@ use App\Http\Controllers\CandidatoController;
 use App\Http\Controllers\FuncaoController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\CargoController;
+use App\Http\Controllers\UnidadeNegocioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -99,6 +100,16 @@ Route::group(['middleware' => 'auth'], function () {
         Route::name('edit')    ->get('{cargo}/edit',   [$class, 'edit']);
         Route::name('update')  ->put('{cargo}',        [$class, 'update']);
         Route::name('destroy') ->delete('{cargo}',     [$class, 'destroy']);
+        Route::name('store')   ->post('',               [$class, 'store']);
+    });
+
+    Route::name('unidadeNegocio.')->prefix('unidadeNegocio')->group(function () {
+        $class = Controllers\UnidadeNegocioController::class;
+        Route::name('index')   ->get('',                [$class, 'index']);
+        Route::name('create')  ->get('create',          [$class, 'create']);
+        Route::name('edit')    ->get('{unidadeNegocio}/edit',   [$class, 'edit']);
+        Route::name('update')  ->put('{unidadeNegocio}',        [$class, 'update']);
+        Route::name('destroy') ->delete('{unidadeNegocio}',     [$class, 'destroy']);
         Route::name('store')   ->post('',               [$class, 'store']);
     });
 

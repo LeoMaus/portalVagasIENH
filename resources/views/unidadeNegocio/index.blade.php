@@ -14,11 +14,11 @@
               </button>
             </div>
             <div class="modal-body">
-              Tem certeza de que deseja excluir esta area?
+              Tem certeza de que deseja excluir esta unidade de Negócio?
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-              <form id="deleteareaForm" method="POST" action="">
+              <form id="deleteunidadeNegocioForm" method="POST" action="">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger">Confirmar</button>
@@ -27,7 +27,9 @@
         </div>
     </div>
   </div>
+
   <br><br>
+
   @if(session('success'))
       <div class="alert alert-success">
         {{ session('success') }}
@@ -39,6 +41,7 @@
         {{ session('error') }}
       </div>
   @endif
+
   <div class="row justify-content-center">
     <div class="col-md-12 mt-5">
       <div class="card">
@@ -51,32 +54,44 @@
 
           <div class="row">
               <div class="col-md-11">
-                  <h4>  {{ __('Área de atuação') }}</h4>
+                  <h4>  {{ __('Unidade de Negócio') }}</h4>
               </div>
               <div class="col-md-3 mb-3"> 
-                <a href="{{ route('area.create') }}" class="btn btn-principal" >Criar nova area</a>
+                <a href="{{ route('unidadeNegocio.create') }}" class="btn btn-principal">Criar nova unidade de Negócio</a>
               </div>
           </div>
+
           <div class="table-responsive col-md-12">
             <table class="table table-bordered" cellspacing="0" cellpadding="0">
               <thead>
                 <tr>
-                  <th>Nome</th>
                   <th>Descrição</th>
+                  <th>ID Empresa</th>
+                  <th>ID Unidade Pai</th>
+                  <th>ID Responsável</th>
+                  <th>Ativo</th>
+                  <th>ID Usuário Criação</th>
                   <th>Data Criação</th>
-
                   <th class="actions">Ações</th>
                 </tr>
               </thead>
               <tbody>
+                @foreach ($unidadeNegocios as $unidadeNegocio)
                 <tr>
-                  @foreach ($areas as $area)
-                  <td>{{ $area->nome }} </td>
-                  <td>{{ $area->descricao }}</td>
-                  <td>{{$area->created_at}}</td>
+                  <td>{{ $unidadeNegocio->descricao }}</td>
+                  <td>{{ $unidadeNegocio->id_empresa }}</td>
+                  <td>{{ $unidadeNegocio->id_un_pai }}</td>
+                  <td>{{ $unidadeNegocio->id_responsavel }}</td>
+                  <td>{{ $unidadeNegocio->ativo ? 'Sim' : 'Não' }}</td>
+                  <td>{{ $unidadeNegocio->id_usuario_criacao }}</td>
+                  <td>{{ $unidadeNegocio->created_at }}</td>
                   <td class='actions'>
-                    <a class='btn btn-warning btn-xs' href="{{ route('area.edit', ['area' => $area->id]) }}"><span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Editar</a>
-                    <a class='btn btn-danger btn-xs delete-area-btn' href='#' data-toggle='modal' data-target='#confirmDeleteModal' data-url="{{ route('area.destroy', ['area' => $area->id]) }}"><span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Excluir</a>
+                    <a class='btn btn-warning btn-xs' href="{{ route('unidadeNegocio.edit', ['unidadeNegocio' => $unidadeNegocio->id]) }}">
+                      <span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Editar
+                    </a>
+                    <a class='btn btn-danger btn-xs delete-unidadeNegocio-btn' href='#' data-toggle='modal' data-target='#confirmDeleteModal' data-url="{{ route('unidadeNegocio.destroy', ['unidadeNegocio' => $unidadeNegocio->id]) }}">
+                      <span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Excluir
+                    </a>
                   </td>
                 </tr>
                 @endforeach
@@ -85,14 +100,15 @@
           </div>
         </div>
       </div>
+    </div>
   </div>
 </div>
 
 <script>
     $(document).ready(function () {
-        $(".delete-area-btn").click(function () {
+        $(".delete-unidadeNegocio-btn").click(function () {
           var url = $(this).data("url");
-          $("#deleteareaForm").attr("action", url);
+          $("#deleteunidadeNegocioForm").attr("action", url);
         });
     });
 </script>

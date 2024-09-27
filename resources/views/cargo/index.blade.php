@@ -14,7 +14,7 @@
               </button>
             </div>
             <div class="modal-body">
-              Tem certeza de que deseja excluir esta cargo?
+              Tem certeza de que deseja excluir este cargo?
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
