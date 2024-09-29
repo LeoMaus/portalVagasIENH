@@ -73,7 +73,7 @@
                 <tr>
                   @foreach ($vagas as $vaga)
                   <td>{{ $vaga->titulo }} </td>
-                  <td>{{ $vaga->unidade }}</td>
+                  <td>{{ $vaga->unidade->descricao }}</td>
                   <td>{{ $vaga->status }}</td>
                   <td>{{ $vaga->descricao }}</td>
                   <td>{{$vaga->created_at}}</td>

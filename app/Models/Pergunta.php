@@ -26,6 +26,12 @@ class Pergunta extends Model
         ->withPivot('required'); // Outras colunas pivot, se necessário
     }
 
+    public function funcoes()
+    {
+        return $this->belongsToMany(Funcao::class, 'pergunta_funcao', 'pergunta_id', 'funcao_id');
+    }
+    
+
     public function respostas()
     {
         return $this->hasMany(Resposta::class, 'pergunta_id');

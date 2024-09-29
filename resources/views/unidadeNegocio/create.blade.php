@@ -45,7 +45,20 @@
                             @enderror
                         </div>
 
+                            <!-- Radio button UN pai -->
                         <div class="form-group mb-2">
+                            <label>{{ __('Essa é uma Unidade de Negócio Pai?') }}</label>
+                            <div>
+                                <input type="radio" id="un_pai_sim" name="un_pai" value="sim">
+                                <label for="un_pai_sim">Sim</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="un_pai_nao" name="un_pai" value="nao" checked>
+                                <label for="un_pai_nao">Não</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-2" id="un_pai_field">
                             <label for="id_un_pai">{{ __('Unidade de Negócio Pai') }}</label>
                             <select id="id_un_pai" name="id_un_pai" class="form-control" required>
                                 <option value="">Selecione uma unidade de negócio</option>
@@ -113,4 +126,29 @@
         </div>
     </div>
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const radioSim = document.getElementById('un_pai_sim');
+        const radioNao = document.getElementById('un_pai_nao');
+        const unPaiField = document.getElementById('un_pai_field');
+
+        function toggleUnPaiField() {
+            if (radioSim.checked) {
+                unPaiField.style.display = 'none';
+                unPaiField.querySelector('select').required = false;
+            } else {
+                unPaiField.style.display = 'block';
+                unPaiField.querySelector('select').required = true;
+            }
+        }
+
+        // Verificar quando a página carrega
+        toggleUnPaiField();
+
+        // Escutar mudanças nos botões de rádio
+        radioSim.addEventListener('change', toggleUnPaiField);
+        radioNao.addEventListener('change', toggleUnPaiField);
+    });
+</script>
+
 @endsection

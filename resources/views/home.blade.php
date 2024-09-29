@@ -40,7 +40,7 @@
                             </svg>
                         </div>
                         <div class="col-md-9">
-                            <p class="card-text">{{ $vaga->unidade }}</p>
+                            <p class="card-text">{{ $vaga->unidade->descricao }}</p>
                         </div>
                     </div>
                     @if(Auth::user()->role == 'user')

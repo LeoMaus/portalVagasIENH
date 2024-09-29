@@ -33,10 +33,10 @@
                     @endif
 
                     <div class="form-group mb-2 mt-3">
-                        <strong>Vagas Vinculadas:</strong>
+                        <strong>Funções Vinculadas:</strong>
                         <ul>
-                            @foreach ($pergunta->vagas as $vaga)
-                                <li>{{ $vaga->titulo }}</li>
+                            @foreach ($pergunta->funcoes as $funcao)
+                                <li>{{ $funcao->nome }}</li>
                             @endforeach
                         </ul>
                     </div>

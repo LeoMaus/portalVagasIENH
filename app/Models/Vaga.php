@@ -19,7 +19,7 @@ class Vaga extends Model
      */
     protected $fillable = [
         'titulo',
-        'unidade',
+        'id_un',
         'status',
         'descricao',
     ];
@@ -34,8 +34,18 @@ class Vaga extends Model
         return $this->hasMany(Resposta::class, 'vaga_id');
     }
 
+    public function unidade()
+    {
+        return $this->belongsTo(UnidadeNegocio::class, 'id_un');
+    }
+
     public function perguntas()
     {
         return $this->belongsToMany(Pergunta::class, 'respostas', 'vaga_id', 'pergunta_id');
+    }
+
+    public function funcoes()
+    {
+        return $this->belongsToMany(Funcao::class, 'vaga_funcao', 'vaga_id', 'funcao_id');
     }
 }

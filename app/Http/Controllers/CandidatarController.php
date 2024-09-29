@@ -9,6 +9,7 @@ use App\Models\Vaga;
 use App\Models\Resposta;
 use App\Models\User;
 use App\Models\CandidaturaVaga;
+use App\Models\PerguntaFuncao;
 
 class CandidatarController extends Controller
 {
@@ -24,9 +25,19 @@ class CandidatarController extends Controller
         $vaga = Vaga::find($vagaId);
 
         // Recupere as perguntas associadas à vaga com o ID igual a $vagaId
-        $perguntas = Pergunta::whereHas('vagas', function ($query) use ($vagaId) {
-            $query->where('vaga_id', $vagaId);
+        // $perguntas = Pergunta::whereHas('vagas', function ($query) use ($vagaId) {
+        //     $query->where('vaga_id', $vagaId);
+        // })->get();
+
+        // Recupere as perguntas associadas à função ao qual a vaga está associada
+        $perguntas = Pergunta::whereHas('funcoes', function ($query) use ($vaga) {
+            // Especifica a tabela na cláusula where
+            $query->select('funcao.id')
+                  ->whereIn('funcao.id', $vaga->funcoes()->pluck('funcao.id'));
         })->get();
+        
+        
+
 
         //verificar se o usuário já não está candidatado na vaga
         //$canditaturaExiste = Resposta::where('user_id', $userId->id)->where('vaga_id', $vaga->id);
