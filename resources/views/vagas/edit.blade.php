@@ -34,24 +34,37 @@
                         
                         </div>
 
-
                         <div class="form-group mb-2">
                             <label for="unidade">{{ __('Unidade') }}</label>
                             
-                            <select class="form-select form-select-md mb-3" aria-label="Large select example" id="unidade" name="unidade" required autocomplete="unidade">
-                                <option value="Unidade Pindorama" @if(old('unidade', $vaga->unidade) == 'Unidade Pindorama') selected @endif>Unidade Pindorama</option>
-                                <option value="Unidade Oswaldo Cruz" @if(old('unidade', $vaga->unidade) == 'Unidade Oswaldo Cruz') selected @endif>Unidade Oswaldo Cruz</option>
-                                <option value="Unidade Fundação Evangélica" @if(old('unidade', $vaga->unidade) == 'Unidade Fundação Evangélica') selected @endif>Unidade Fundação Evangélica</option>
-                                <option value="Todos" @if(old('unidade', $vaga->unidade) == 'Todos') selected @endif>Todos</option>
-
+                            <select class="form-select form-select-md mb-3" aria-label="Large select example" id="unidade" type="unidade" class="form-control @error('unidade') is-invalid @enderror" name="unidade" value="{{ old('unidade') }}" required autocomplete="unidade">
+                            @foreach($unidades_negocio as $unidade)
+                                <option value="{{$unidade->id}}">{{$unidade->descricao}}</option>
+                            @endforeach
                             </select>
 
-                            @error('unidade')
+                            @error('status')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         
+                        </div>
+
+                        <div class="form-group mb-2 mt-3">
+                        <!-- Outros campos da pergunta -->
+                        <label for="funcoes">Vincular vaga à função:</label>
+                        <a href="#" data-toggle="collapse" data-target="#funcoes-collapse">Mostrar funções</a>
+                            <div id="funcoes-collapse" class="collapse">
+                                <div class="list-group">
+                                    @foreach ($funcoes as $funcao)
+                                        <label class="list-group-item">
+                                            <input type="checkbox" name="funcoes[]" value="{{ $funcao->id }}" class="form-check-input" {{isset($vagaFuncoes) && in_array($funcao->id, $vagaFuncoes) ? 'checked' : '' }} >
+                                            {{ $funcao->nome }}
+                                        </label>
+                                @endforeach
+                                </div>
+                            </div>
                         </div>
 
 

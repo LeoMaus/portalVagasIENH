@@ -52,6 +52,9 @@ class VagasController extends Controller
         // Lógica para editar o vaga com o ID fornecido
         $vaga = Vaga::find($id);
         $vagaFuncoes = VagaFuncao::where('vaga_id', $vaga->id)->pluck('funcao_id')->toArray();
+        $unidades_negocio = UnidadeNegocio::all();
+        $funcoes = Funcao::all();
+
 
 
         if (!$vaga) {
@@ -60,7 +63,7 @@ class VagasController extends Controller
                 ->with('error', 'Vaga não encontrada.');
         }
 
-        return view('vagas.edit', compact('vaga', 'vagaFuncoes'));
+        return view('vagas.edit', compact('vaga', 'vagaFuncoes', 'funcoes', 'unidades_negocio'));
     }
 
     public function update(Request $request, $id)
@@ -78,6 +81,9 @@ class VagasController extends Controller
         $vagas->id_un = $request->input('unidade');
         $vagas->status = $request->input('status');
         $vagas->save();
+
+        $funcoes = $request->input('funcoes', []); // Obtenha as funções, ou um array vazio
+        $vagas->funcoes()->sync($funcoes); // Associe as funções à nova vaga
 
         return redirect()
             ->route('vaga.index')

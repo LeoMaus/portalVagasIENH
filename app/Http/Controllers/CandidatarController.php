@@ -23,6 +23,8 @@ class CandidatarController extends Controller
         $user = Candidato::logged();
         $userId = auth()->user();
         $vaga = Vaga::find($vagaId);
+        //array de funcões da vaga
+        $funcoes = $vaga->funcoes()->pluck('funcao.id');
 
         // Recupere as perguntas associadas à vaga com o ID igual a $vagaId
         // $perguntas = Pergunta::whereHas('vagas', function ($query) use ($vagaId) {

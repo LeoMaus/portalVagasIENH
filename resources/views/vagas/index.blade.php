@@ -63,6 +63,7 @@
                 <tr>
                   <th>Título</th>
                   <th>Unidade</th>
+                  <th>Descrição</th>
                   <th>Status</th>
                   <th>Data Criação</th>
 

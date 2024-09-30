@@ -59,6 +59,7 @@
                 <tr>
                   <th>Título</th>
                   <th>Unidade</th>
+                  <th>Descrição</th>
                   <th>Status</th> 
 
                   <th class="actions">Ações</th>
@@ -68,7 +69,8 @@
                 @foreach ($vagasCadastradas as $vaga)
                 <tr>
                   <td>{{ $vaga->titulo }} </td>
-                  <td>{{ $vaga->unidade }}</td>
+                  <td>{{ $vaga->unidade->descricao }}</td>
+                  <td>{{ $vaga->descricao }}</td>
                   <td>{{ $vaga->status }}</td>
                   <td class='actions'>
                     <a class='btn btn-danger btn-xs delete-vaga-btn' href='#' data-toggle='modal' data-target='#confirmDeleteModal' data-url="{{ route('candidato.cancel', ['vaga' => $vaga->id]) }}"><span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Cancelar Candidatura</a>
