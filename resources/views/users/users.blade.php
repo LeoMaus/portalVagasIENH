@@ -45,18 +45,18 @@
       <div class="card">
         <div class="card-body">
           @if (session('status'))
-          <div class="alert alert-success" role="alert">
-            {{ session('status') }}
-          </div>
+            <div class="alert alert-success" role="alert">
+              {{ session('status') }}
+            </div>
           @endif
 
           <div class="row">
-              <div class="col-md-9">
-              <h4>  {{ __('Usuários') }}</h4>
-              </div>
-              <div class="col-md-3 mb-3">
-                <a href="{{ route('formCreate') }}" class="btn btn-principal" >Adicionar usuário</a>
-              </div>
+            <div class="col-md-11">
+                <h4>  {{ __('Gerenciamento de usuários') }}</h4>
+            </div>
+            <div class="col-md-3 mb-3"> 
+              <a href="{{ route('formCreate') }}" class="btn btn-principal">Criar usuário</a>
+            </div>
           </div>
 
           <div class="table-responsive col-md-12">

@@ -5,6 +5,10 @@
     position: absolute;
 }
 
+.container {
+    max-width: none;
+}
+
 .py-4 {
     padding-top: 0rem!important;
     padding-bottom: 0rem!important;
@@ -68,6 +72,29 @@
 	text-decoration: underline;
 }
 
+.tag-success {
+    background-color: #3CB371;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    height: 20px;
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;     /* Centraliza verticalmente */
+}
+
+.tag-danger {
+    background-color: #FF6347;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    height: 20px;
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center;     /* Centraliza verticalmente */
+}
 
  /* barra de rolagem */
 

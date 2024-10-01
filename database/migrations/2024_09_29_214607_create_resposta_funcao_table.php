@@ -19,7 +19,7 @@ class CreateRespostaFuncaoTable extends Migration
             $table->unsignedBigInteger('funcao_id');
             $table->unsignedBigInteger('vaga_id');
             $table->foreign('resposta_id')->references('id')->on('respostas');
-            $table->foreign('funcao_id')->references('id')->on('funcoes');
+            $table->foreign('funcao_id')->references('id')->on('funcao');
             $table->timestamps();
         });
     }

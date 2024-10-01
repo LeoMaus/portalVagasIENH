@@ -26,4 +26,24 @@ class UnidadeNegocio extends Model
     // Se você estiver usando timestamps automáticos, deixe isso como verdadeiro
     // Caso contrário, defina como falso
     public $timestamps = true;
+
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'id_empresa');
+    }
+
+    public function responsavel()
+    {
+        return $this->belongsTo(User::class, 'id_responsavel');
+    }
+
+    public function unidadePai()
+    {
+        return $this->belongsTo(UnidadeNegocio::class, 'id_un_pai');
+    }
+
+    public function usuarioCriacao()
+    {
+        return $this->belongsTo(User::class, 'id_usuario_criacao');
+    }
 }

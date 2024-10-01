@@ -27,26 +27,27 @@
         </div>
     </div>
   </div>
-  <br><br>
-  @if(session('success'))
-      <div class="alert alert-success">
-        {{ session('success') }}
-      </div>
-  @endif
 
-  @if(session('error'))
-      <div class="alert alert-danger">
-        {{ session('error') }}
-      </div>
-  @endif
   <div class="row justify-content-center">
     <div class="col-md-12 mt-5">
       <div class="card">
         <div class="card-body">
+          @if(session('success'))
+            <div class="alert alert-success">
+              {{ session('success') }}
+            </div>
+          @endif
+
+          @if(session('error'))
+            <div class="alert alert-danger">
+              {{ session('error') }}
+            </div>
+          @endif
+
           @if (session('status'))
-          <div class="alert alert-success" role="alert">
+            <div class="alert alert-success" role="alert">
               {{ session('status') }}
-          </div>
+            </div>
           @endif
 
           <div class="row">

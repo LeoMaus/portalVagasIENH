@@ -31,15 +31,15 @@
   <br><br>
 
   @if(session('success'))
-      <div class="alert alert-success">
-        {{ session('success') }}
-      </div>
+    <div class="alert alert-success">
+      {{ session('success') }}
+    </div>
   @endif
 
   @if(session('error'))
-      <div class="alert alert-danger">
-        {{ session('error') }}
-      </div>
+    <div class="alert alert-danger">
+      {{ session('error') }}
+    </div>
   @endif
 
   <div class="row justify-content-center">
@@ -53,37 +53,40 @@
           @endif
 
           <div class="row">
-              <div class="col-md-11">
-                  <h4>  {{ __('Unidade de Negócio') }}</h4>
-              </div>
-              <div class="col-md-3 mb-3"> 
-                <a href="{{ route('unidadeNegocio.create') }}" class="btn btn-principal">Criar nova unidade de Negócio</a>
-              </div>
+            <div class="col-md-11">
+                <h4>  {{ __('Unidade de Negócio') }}</h4>
+            </div>
+            <div class="col-md-3 mb-3"> 
+              <a href="{{ route('unidadeNegocio.create') }}" class="btn btn-principal">Criar nova unidade de Negócio</a>
+            </div>
           </div>
 
           <div class="table-responsive col-md-12">
             <table class="table table-bordered" cellspacing="0" cellpadding="0">
               <thead>
                 <tr>
+                  <th>Status</th>
                   <th>Descrição</th>
-                  <th>ID Empresa</th>
-                  <th>ID Unidade Pai</th>
-                  <th>ID Responsável</th>
-                  <th>Ativo</th>
-                  <th>ID Usuário Criação</th>
+                  <th>Empresa</th>
+                  <th>Unidade Pai</th>
+                  <th>Responsável</th>
+                  <th>Usuário Criação</th>
                   <th>Data Criação</th>
                   <th class="actions">Ações</th>
                 </tr>
               </thead>
               <tbody>
                 @foreach ($unidadeNegocios as $unidadeNegocio)
-                <tr>
+                  <td>
+                    <div class="p-2 rounded {{ $unidadeNegocio->ativo ? 'tag-success' : 'tag-danger' }}">
+                      {{ $unidadeNegocio->ativo ? 'Ativo' : 'Inativo' }}
+                    </div>
+                  </td>
                   <td>{{ $unidadeNegocio->descricao }}</td>
-                  <td>{{ $unidadeNegocio->id_empresa }}</td>
-                  <td>{{ $unidadeNegocio->id_un_pai }}</td>
-                  <td>{{ $unidadeNegocio->id_responsavel }}</td>
-                  <td>{{ $unidadeNegocio->ativo ? 'Sim' : 'Não' }}</td>
-                  <td>{{ $unidadeNegocio->id_usuario_criacao }}</td>
+                  <td>{{ $unidadeNegocio->users->name }}</td>
+                  <td>{{ $unidadeNegocio->unidadePai->descricao }}</td>
+                  <td>{{ $unidadeNegocio->responsavel->name }}</td>
+                  <td>{{ $unidadeNegocio->usuarioCriacao->name }}</td>
                   <td>{{ $unidadeNegocio->created_at }}</td>
                   <td class='actions'>
                     <a class='btn btn-warning btn-xs' href="{{ route('unidadeNegocio.edit', ['unidadeNegocio' => $unidadeNegocio->id]) }}">
