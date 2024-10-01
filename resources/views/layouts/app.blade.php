@@ -85,9 +85,6 @@
                         @if(Auth::user()->role == 'user')
                         <!-- Menu usuário padrão -->
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('profile') }}">{{ __('Perfil') }}</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('candidato.show') }}">{{ __('Candidaturas') }}</a>
                         </li>
                         <li class="nav-item">
@@ -104,6 +101,14 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('profile') }}" onclick="event.preventDefault();
+                                document.getElementById('profile-form').submit();">
+                                    {{ __('Perfil') }}
+                                </a>
+                                <form id="profile-form" action="{{ route('profile') }}" method="GET" class="d-none">
+                                    @csrf
+                                </form>
+
                                 <a class="dropdown-item" href="{{ route('home') }}" onclick="event.preventDefault();
                                                     document.getElementById('home-form').submit();">
                                     {{ __('Home') }}

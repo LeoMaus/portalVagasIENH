@@ -1,5 +1,26 @@
+/* Variáveis para as cores */
+:root {
+    --grayishBlue: hsl(237, 18%, 59%);
+    --softRed: hsl(345, 95%, 68%);
+    --softViolet: #940592;
+    --darkViolet: #6c0664;
+    --softBlue: hsl(236, 21%, 26%);
+    --darkBlue: hsl(235, 16%, 14%);
+    --white: white;
+    --black: hsl(0, 0%, 0%);
+    --green: #3CB371;
+    --red: #FF6347;
+    --grey: #1d1d1d;
+    --background: #465359;
+    --cardBorderColor: var(--softViolet);
+    --tagSuccessBackground: var(--green);
+    --tagDangerBackground: var(--red);
+    --scrollbarTrackBackground: #f1f1f1;
+}
+
+/* Estilos */
 .background {
-    background-color: #465359;
+    background-color: var(--background);
     width: 100%;
     height: 100%;
     position: absolute;
@@ -15,11 +36,11 @@
 }
 
 .card {
-	border-radius: 5px;
-    box-shadow: 0px 30px 40px -20px var(--grayishBlue);
+    border-radius: 5px;
+    box-shadow: 0px 20px 40px -20px var(--grayishBlue);
     padding: 30px;
     margin: 20px;
-    border-top: 5px solid #940592;
+    border-top: 5px solid var(--cardBorderColor);
 }
 
 .card-body-home {
@@ -27,7 +48,7 @@
 }
 
 .text-white {
-    color: white;
+    color: var(--white);
 }
 
 .img-logo {
@@ -35,8 +56,8 @@
 }
 
 .btn-principal {
-    background-color: #940592;
-    color: white;
+    background-color: var(--softViolet);
+    color: var(--white);
     border: none;
     border-radius: 5px;
     padding: 8px 20px;
@@ -49,32 +70,32 @@
 }
 
 .btn-principal:hover {
-    color: white;
-    background-color: #6c0664;
+    color: var(--white);
+    background-color: var(--darkViolet);
 }
 
 .btn-link {
-	color: #1d1d1d;
-	display: flex;
+    color: var(--grey);
+    display: flex;
     justify-content: flex-end;
-	text-decoration: none;
+    text-decoration: none;
 }
 
 .btn-link-2 {
-    color: #1d1d1d;
-	display: flex;
+    color: var(--grey);
+    display: flex;
     justify-content: center;
-	text-decoration: none;
+    text-decoration: none;
 }
 
 .btn-link:hover {
-	color:  #940592;
-	text-decoration: underline;
+    color: var(--softViolet);
+    text-decoration: underline;
 }
 
 .tag-success {
-    background-color: #3CB371;
-    color: white;
+    background-color: var(--tagSuccessBackground);
+    color: var(--white);
     border-radius: 5px;
     padding: 5px;
     margin: 5px;
@@ -85,8 +106,8 @@
 }
 
 .tag-danger {
-    background-color: #FF6347;
-    color: white;
+    background-color: var(--tagDangerBackground);
+    color: var(--white);
     border-radius: 5px;
     padding: 5px;
     margin: 5px;
@@ -96,18 +117,17 @@
     align-items: center;     /* Centraliza verticalmente */
 }
 
- /* barra de rolagem */
-
+/* Barra de rolagem */
 ::-webkit-scrollbar {
     width: 5px; /* Largura da barra de rolagem */
 }
 
 ::-webkit-scrollbar-track {
-    background: #f1f1f1; /* Cor de fundo da faixa de rolagem */
+    background: var(--scrollbarTrackBackground); /* Cor de fundo da faixa de rolagem */
 }
 
 ::-webkit-scrollbar-thumb {
-    background: black;/* Cor do "polegar" (a parte que você arrasta) */
-    border: 1px solid white;
+    background: var(--black); /* Cor do "polegar" (a parte que você arrasta) */
+    border: 1px solid var(--white);
     border-radius: 10%;
 }

@@ -50,7 +50,7 @@
 
           <div class="row">
               <div class="col-md-11">
-                  <h4>  {{ __('Vagas') }}</h4>
+                  <h4>  {{ __('Candidaturas') }}</h4>
               </div>
           </div>
           <div class="table-responsive col-md-12">
