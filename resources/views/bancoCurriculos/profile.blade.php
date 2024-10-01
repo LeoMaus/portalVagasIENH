@@ -57,10 +57,10 @@
                     </div>
                     <div class="row mb-2">
                         <div class="col-md-6">
-                            <strong>{{ __('Cidade:') }}</strong> {{ isset($user->dadosPessoais->endereco) ? $user->dadosPessoais->endereco->cidade : '' }}
+                            <strong>{{ __('Cidade:') }}</strong> {{ isset($user->dadosPessoais->endereco) ? $cidade->nome : '' }}
                         </div>
                         <div class="col-md-6">
-                            <strong>{{ __('Estado:') }}</strong> {{ isset($user->dadosPessoais->endereco) ? $user->dadosPessoais->endereco->estado : '' }}
+                            <strong>{{ __('Estado:') }}</strong> {{ isset($user->dadosPessoais->endereco) ? $estado->nome : '' }}
                         </div>
                     </div>
                     <br><br>

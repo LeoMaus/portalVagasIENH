@@ -45,13 +45,15 @@ class BancoCurriculosController extends Controller
     
         // Retorna os estados para o select
         $estados = Estado::all();
-    
+        $cidades = Cidade::all();
+
+        $cidade = Cidade::find($user->dadosPessoais->endereco->cidade);
+        $estado = Estado::find($cidade->estado_id);
+        
         // Obtém a cidade associada
-        $cidade = $user->dadosPessoais && $user->dadosPessoais->endereco
-                  ? Cidade::find($user->dadosPessoais->endereco->cidade_id)
-                  : null;
+      
     
-        return view('bancoCurriculos.profile', compact('user', 'estados', 'cidade', 'curriculo', 'formacao'));
+        return view('bancoCurriculos.profile', compact('user', 'estado', 'cidade', 'curriculo', 'formacao'));
     }
     
     
