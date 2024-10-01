@@ -85,8 +85,9 @@ class User extends Authenticatable
 
     public function formacao()
     {
-        return $this->hasOne(Formacao::class);
+        return $this->hasMany(Formacao::class);
     }
+    
     
     
 }

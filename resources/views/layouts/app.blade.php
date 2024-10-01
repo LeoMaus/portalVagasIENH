@@ -88,6 +88,9 @@
                             <a class="nav-link" href="{{ route('candidato.show') }}">{{ __('Candidaturas') }}</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('area.show') }}">{{ __('Áreas de interesse') }}</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ url('/home') }}">{{ __('Vagas') }}</a>
                         </li>
                         <!-- Fim menu usuário padrão -->

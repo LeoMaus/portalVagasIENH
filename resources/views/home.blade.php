@@ -4,17 +4,7 @@
 @section('content')
 <br>
 <div class="container">
-    @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
 
-    @if(session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-    @endif
 
     <div class="col-md-12">
         @if(Auth::user()->role == 'user')
@@ -56,6 +46,7 @@
         @endif
         @endforeach
     </div>
+        @if(Auth::user()->role == 'user')
 
     <div class="row d-flex justify-content-center mt-5">
         <div class="col-md-12">
@@ -64,9 +55,25 @@
         </div>
     </div>
     <div class="row d-flex justify-content-center mt-4">
+
         <div class="col-md-8">
+
+            
             <div class="card bg-light shadow-sm">
                 <div class="card-body">
+                    <center>
+                    @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+                    @if(session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+                    </center>
                     <h5 class="card-title text-center">Selecione a Área</h5>
                     <form method="POST" action="{{ route('area.interesseArea') }}">
                     @csrf
@@ -85,11 +92,12 @@
                     </div>
                         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary">Cadastrar interesse</button>
+                            <button type="submit" class="btn btn-principal mt-3">Cadastrar interesse</button>
                         </div>
                     </form>
                 </div>
             </div>
+        @endif
         </div>
     </div>
     

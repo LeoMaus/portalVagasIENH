@@ -120,22 +120,65 @@ class AreaController extends Controller
             // O usuário não possui um endereço
             $endereco = null;
         }
+
+        //valida se não existe a relação entre usuário e área
+        $userArea = UserArea::where('user_id', $request->user_id)->where('area_id', $request->area_id)->count();
         
         // if para validar se o usuário possui todos os dados necessários para se candidatar a uma vaga
         if($formacao > 0 && $dadosPessoais > 0 && $curriculo > 0 && $endereco > 0){
+            if($userArea > 0){
+                // Redirecionar para a lista de funções com uma mensagem de erro
+                return redirect()->route('home')->with('error', 'Você já possui interesse nesta área de atuação!');
+            }
             // Criar um novo interesse com os dados fornecidos
             UserArea::create($request->all());
             // Redirecionar para a lista de funções com uma mensagem de sucesso
             return redirect()->route('home')->with('success', 'Interesse criado com sucesso!');
         }else{
             // Redirecionar para a lista de funções com uma mensagem de erro
-            return redirect()->route('home')->with('error', 'Para se candidatar a uma vaga é necessário preencher todos os dados pessoais, formação, curriculo e endereço!');
+            return redirect()->route('home')->with('error', 'Complete seu perfil para sinalizar interesse neste área de atuação. Todos os dados pessoais são necessários, formação, curriculo e endereço!');
         }
 
 
 
         // Retornar a view para editar a Area
         return view('home', compact('area'));
+    }
+
+    public function show()
+    {
+
+        $area = Area::all();
+        $userArea = UserArea::all();
+
+        #se for admin retorna todas as areas e interesses
+        if(auth()->user()->role == 'admin'){
+            return view('area.show', compact('area', 'userArea'));
+        }
+        else{
+            //retorna apenas as areas de interesse do usuário
+            $userArea = UserArea::where('user_id', auth()->user()->id)->get();
+            return view('area.show', compact('area', 'userArea'));
+        }
+
+    }
+
+    public function interessecancel($id){
+        
+        $user = auth()->user();
+        $userArea = UserArea::where('user_id', $user->id)->where('area_id', $id)->first();
+
+        if($userArea){
+            $userArea->delete();
+            return redirect()
+            ->route('area.show')
+            ->with('success', 'Interesse cancelado com sucesso.');
+        }else {
+            return redirect()
+            ->route('area.show')
+            ->with('error', 'Interesse não encontrado.');
+        }
+
     }
 
 

@@ -92,6 +92,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::name('destroy') ->delete('{area}',     [$class, 'destroy']);
         Route::name('store')   ->post('',               [$class, 'store']);
         Route::name('interesseArea')    ->post('',   [$class, 'interesseArea']);
+        Route::name('show')    ->get('show',             [$class, 'show']);    // Exibe detalhes de todas as áreas
+        Route::name('interesse.cancel')    ->delete('{area}/cancel',   [$class, 'interessecancel']); // Nova rota para cancelar interesse
     });
 
     Route::name('cargo.')->prefix('cargo')->group(function () {
@@ -187,6 +189,14 @@ Route::group(['middleware' => 'auth'], function () {
         Route::name('store')   ->post('',           [$class, 'store']);
         Route::name('update')  ->put('{feedback}',  [$class, 'update']);
         Route::name('mail')     ->post('{vaga}/{user}',  [$class, 'mail']);
+
+    });
+
+    # rotas para banco de curriculos
+    Route::name('bancoCurriculos.')->prefix('bancoCurriculos')->group(function () {
+        $class = Controllers\BancoCurriculosController::class;
+        Route::name('index')   ->get('',            [$class, 'index']); 
+        Route::name('profile') ->get('{id_user}',   [$class, 'profile']);
 
     });
 

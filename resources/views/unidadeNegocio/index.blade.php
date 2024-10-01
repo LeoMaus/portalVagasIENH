@@ -84,7 +84,7 @@
                   </td>
                   <td>{{ $unidadeNegocio->descricao }}</td>
                   <td>{{ $unidadeNegocio->users->name }}</td>
-                  <td>{{ $unidadeNegocio->unidadePai->descricao }}</td>
+                  <td>{{ $unidadeNegocio->unidadePai ? $unidadeNegocio->unidadePai->descricao : '' }}</td>
                   <td>{{ $unidadeNegocio->responsavel->name }}</td>
                   <td>{{ $unidadeNegocio->usuarioCriacao->name }}</td>
                   <td>{{ $unidadeNegocio->created_at }}</td>
