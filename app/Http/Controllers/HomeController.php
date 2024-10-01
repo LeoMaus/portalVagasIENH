@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Vaga;
+use App\Models\Area;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -25,7 +26,8 @@ class HomeController extends Controller
     public function index()
     {
         $vagas = Vaga::all();
+        $areas = Area::all();
 
-        return view('home', ['vagas' => $vagas]);
+        return view('home', ['vagas' => $vagas, 'areas' => $areas]);
     }
 }

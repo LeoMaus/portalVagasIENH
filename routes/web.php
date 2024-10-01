@@ -91,6 +91,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::name('update')  ->put('{area}',        [$class, 'update']);
         Route::name('destroy') ->delete('{area}',     [$class, 'destroy']);
         Route::name('store')   ->post('',               [$class, 'store']);
+        Route::name('interesseArea')    ->post('',   [$class, 'interesseArea']);
     });
 
     Route::name('cargo.')->prefix('cargo')->group(function () {

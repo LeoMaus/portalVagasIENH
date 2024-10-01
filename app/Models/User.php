@@ -87,4 +87,6 @@ class User extends Authenticatable
     {
         return $this->hasOne(Formacao::class);
     }
+    
+    
 }

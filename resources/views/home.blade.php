@@ -68,24 +68,24 @@
             <div class="card bg-light shadow-sm">
                 <div class="card-body">
                     <h5 class="card-title text-center">Selecione a Área</h5>
-                    <form>
-                        <div class="mb-3">
-                            <label for="areaSelect" class="form-label">Área de Atuação</label>
-                            <select id="areaSelect" class="form-select">
-                                <option value="" disabled selected>Escolha uma área...</option>
-                                <option value="engenharia">Engenharia</option>
-                                <option value="ti">Tecnologia da Informação</option>
-                                <option value="saude">Saúde</option>
-                                <option value="administracao">Administração</option>
-                                <!-- Adicione mais opções conforme necessário -->
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="fileUpload" class="form-label">Upload de Currículo</label>
-                            <input type="file" class="form-control" id="fileUpload" accept=".pdf,.doc,.docx">
-                        </div>
+                    <form method="POST" action="{{ route('area.interesseArea') }}">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="areaSelect" class="form-label">Área de Atuação</label>
+                        <select id="areaSelect" name="area_id" class="form-select" onchange="updateDescription()">
+                            @foreach ($areas as $area)
+                                <option value="{{ $area->id }}" data-descricao="{{ $area->descricao }}">{{ $area->nome }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="areaDescricao" class="form-label">Descrição da Área</label>
+                        <textarea class="form-control" id="areaDescricao" value="" readonly> </textarea>
+                    </div>
+                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary">Enviar Currículo</button>
+                            <button type="submit" class="btn btn-primary">Cadastrar interesse</button>
                         </div>
                     </form>
                 </div>
@@ -94,5 +94,21 @@
     </div>
     
 </div>
+
+<script>
+    function updateDescription() {
+        const select = document.getElementById('areaSelect');
+        const selectedOption = select.options[select.selectedIndex];
+        const descricao = selectedOption.getAttribute('data-descricao');
+        
+        // Atualiza o campo de descrição com base na seleção
+        document.getElementById('areaDescricao').value = descricao;
+    }
+
+    // Definir a descrição inicial com base na primeira opção
+    window.onload = function() {
+        updateDescription();
+    };
+</script>
 
 @endsection
