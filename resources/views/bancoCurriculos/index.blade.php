@@ -50,7 +50,7 @@
                 </div>
             @endif
               <div class="col-md-11">
-                  <h4>  {{ __('Banco de currículos') }}</h4>
+                  <h4>  {{ __('Banco de talentos') }}</h4>
               </div>
           </div>
           <div class="table-responsive col-md-12">

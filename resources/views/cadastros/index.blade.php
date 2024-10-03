@@ -34,7 +34,7 @@
 
                         @php
                             $cards = [
-                                ['title' => 'Banco de currículos', 'description' => 'Visualize o banco de currículos com base em áreas de interesses.', 'route' => 'bancoCurriculos.index'],
+                                ['title' => 'Banco de talentos', 'description' => 'Visualize o banco de talentos com base em áreas de interesses.', 'route' => 'bancoCurriculos.index'],
                                 ['title' => 'Unidade de negócio', 'description' => 'Visualize e edite as unidades de negócio.', 'route' => 'unidadeNegocio.index'],
                                 ['title' => 'Perguntas', 'description' => 'Visualize e edite as perguntas desejadas.', 'route' => 'pergunta.index'],
                                 ['title' => 'Vagas', 'description' => 'Gerencie e edite as informações das vagas cadastradas.', 'route' => 'vaga.index'],

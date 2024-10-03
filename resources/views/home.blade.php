@@ -50,7 +50,7 @@
 
     <div class="row d-flex justify-content-center mt-5">
         <div class="col-md-12">
-            <h2 class="text-center text-white">Banco de currículos</h2>
+            <h2 class="text-center text-white">Banco de talentos</h2>
             <p class="text-center text-white">Confira os currículos disponíveis para cada área de atuação</p>
         </div>
     </div>

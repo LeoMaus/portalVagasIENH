@@ -38,7 +38,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/home') }}">
-                    <img src="{{ asset('assets/2.png') }}" alt="Logo" class="img-logo">
+                    <img src="{{ asset('assets/2.png') }}" alt="Logo" class="img-logo-interna">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -85,7 +85,7 @@
                         @if(Auth::user()->role == 'user')
                         <!-- Menu usuário padrão -->
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('candidato.show') }}">{{ __('Candidaturas') }}</a>
+                            <a class="nav-link" href="{{ route('candidato.show') }}">{{ __('Minhas vagas') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('area.show') }}">{{ __('Áreas de interesse') }}</a>
