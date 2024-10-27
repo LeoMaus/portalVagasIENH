@@ -66,6 +66,8 @@ class UsersController extends Controller
         User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
+            'pf_pj' => $request->input('pf_pj'),
+            'cpf_cnpj' => $request->input('cpf_cnpj'),
             'password' => Hash::make($request->input('password')),
             'role' => $request->input('role') ?? 'user',
         ]);

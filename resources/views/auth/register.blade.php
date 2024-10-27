@@ -8,8 +8,8 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-text text-center  mt-2">
-                    <img src="{{ asset('assets/1.png') }}" alt="Logo" class="img-logo">
-                    <div class="text-center" style="font-size: 18px">{{ __('Cadastre-se') }}</div>
+                    <img src="{{ asset('assets/logo.jpg') }}" alt="Logo" class="img-logo">
+                    <div class="text-center title-page">{{ __('Cadastre-se') }}</div>
                 </div>
 
                 <div class="card-body p-5">
@@ -17,8 +17,7 @@
                         @csrf
 
                         <div class="form-group mb-2">
-                            <label for="name">{{ __('Nome') }}</label>
-                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                            <input id="name" type="text" class="form-control input @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="{{ __('Nome') }}">
 
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -29,8 +28,7 @@
                         </div>
 
                         <div class="form-group mb-2">
-                            <label for="email">{{ __('Email') }}</label>
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                            <input id="email" type="email" class="form-control input @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="{{ __('Email') }}">
 
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -41,8 +39,7 @@
                         </div>
 
                         <div class="form-group mb-2">
-                            <label for="password" >{{ __('Senha') }}</label>
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                            <input id="password" type="password" class="form-control input @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="{{ __('Senha') }}">
 
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -53,8 +50,7 @@
                         </div>
 
                         <div class="form-group mb-4">
-                            <label for="password-confirm">{{ __('Confirmação da senha') }}</label>
-                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            <input id="password-confirm" type="password" class="form-control input" name="password_confirmation" required autocomplete="new-password" placeholder="{{ __('Confirmação da senha') }}">
                         </div>
 
                         <div class="form-group mb-2">
@@ -65,6 +61,12 @@
                             </center>
                         </div>
                     </form>
+                </div>
+                <div>
+                    <center>
+                        <img src="{{ asset('assets/2.png') }}" alt="Logo" class="img-logo-footer mb-5 mt-3">
+                    </center>
+                   
                 </div>
             </div>
         </div>

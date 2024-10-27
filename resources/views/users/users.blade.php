@@ -65,9 +65,10 @@
                 <tr>
                   <th>Nome</th>
                   <th>E-mail</th>
+                  <th>PF/PJ</th>
+                  <th>CPF/CNPJ</th>
                   <th>Permissão</th>
                   <th>Status</th>
-                  <th>Data Criação</th>
 
                   <th class="actions">Ações</th>
                 </tr>
@@ -77,6 +78,8 @@
                   @foreach ($users as $user)
                   <td>{{ $user->name }} </td>
                   <td>{{ $user->email }}</td>
+                  <td>{{ $user->pf_pj }}</td>
+                  <td>{{ $user->cpf_cnpj }}</td>
                   <td>{{ $user->role }}</td>
                   <td>
                     @isnull($user->deleted_at)
@@ -85,7 +88,6 @@
                       Inativo
                     @endisnull
                   </td>
-                  <td>{{$user->created_at}}</td>
                 
                   <td class='actions'>
                     <a class='btn btn-warning btn-xs' href="{{ route('formEdit', $user->id) }}" ><span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Editar</a>
@@ -101,6 +103,11 @@
               </tbody>
             </table>
           </div>
+        </div>
+        <div class="footer">
+          <center>
+              <img src="{{ asset('assets/2.png') }}" alt="Logo" class="img-logo-footer mb-5 mt-3">
+          </center>
         </div>
     </div>
   </div>

@@ -310,6 +310,12 @@
             @if(Auth::user()->role == 'user')
             <a class='btn btn-danger btn-xs ml-4 delete-user-btn' href='#' data-toggle='modal' data-target='#confirmDeleteModal' data-url="{{ route('users.destroy', $user->id) }}"><span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Apagar minha conta</a>
             @endif
+
+            <div class="footer">
+                <center>
+                    <img src="{{ asset('assets/2.png') }}" alt="Logo" class="img-logo-footer mb-5 mt-3">
+                </center>
+            </div>
         </div>
     </div>
 </div>

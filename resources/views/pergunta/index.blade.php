@@ -32,17 +32,17 @@
 <div class="row justify-content-center">
 
     <div class="col-md-12 mt-5">
-    @if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-    @endif
-
-    @if(session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
+        @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
         </div>
-    @endif
+        @endif
+
+        @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
 
         <div class="card">
             <div class="card-body">
@@ -91,6 +91,11 @@
                 </table>
             </div>
             </div>
+        </div>
+        <div class="footer">
+            <center>
+                <img src="{{ asset('assets/2.png') }}" alt="Logo" class="img-logo-footer mb-5 mt-3">
+            </center>
         </div>
     </div>
 </div>

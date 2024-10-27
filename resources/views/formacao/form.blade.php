@@ -52,6 +52,12 @@
                         </form>
                     </div>
                 </div>
+                <div>
+                    <center>
+                        <img src="{{ asset('assets/2.png') }}" alt="Logo" class="img-logo-footer mb-5 mt-3">
+                    </center>
+                   
+                </div>
             </div>
         </div>
     </div>
