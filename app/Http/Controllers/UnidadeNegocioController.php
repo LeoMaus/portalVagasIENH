@@ -13,9 +13,11 @@ class UnidadeNegocioController extends Controller
     {
         // Buscar todas as funções do banco de dados
         $unidadeNegocios = UnidadeNegocio::all();
+        // busca usuários
+        $users = User::all();
         
         // Retornar a view com as funções
-        return view('unidadeNegocio.index', ['unidadeNegocios' => $unidadeNegocios]);
+        return view('unidadeNegocio.index', ['unidadeNegocios' => $unidadeNegocios, 'users' => $users]);
     }
 
     public function store(Request $request)
