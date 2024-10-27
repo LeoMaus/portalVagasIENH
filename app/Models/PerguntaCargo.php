@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class PerguntaFuncao extends Pivot
+class PerguntaCargo extends Pivot
 {
     use HasFactory;
 
-    protected $table = 'pergunta_funcao';
+    protected $table = 'pergunta_cargo';
 
     protected $fillable = [
-        'funcao_id',
+        'cargo_id',
         'pergunta_id',
         'required',
     ];
@@ -24,8 +24,8 @@ class PerguntaFuncao extends Pivot
         return $this->belongsTo(Pergunta::class, 'pergunta_id');
     }
 
-    public function funcao(){
-        return $this->belongsTo(Funcao::class, 'funcao_id');
+    public function cargo(){
+        return $this->belongsTo(Cargo::class, 'cargo_id');
     }
 
 

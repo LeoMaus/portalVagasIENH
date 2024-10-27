@@ -22,6 +22,21 @@ class Vaga extends Model
         'id_un',
         'status',
         'descricao',
+        'setor_responsavel_id',
+        'vaga_responsavel_id',
+        'gestor_aprovador_id',
+        'cargo_id',
+        'funcao_id',
+        'data_inicio_vigencia',
+        'data_termino_vigencia',
+        'prazo_contratacao',
+        'recrutador_responsavel_id',
+        'avaliador_responsavel_id',
+        'tipo_vaga',
+        'situacao_vaga',
+        'usuario_criacao_id',
+        'log_alteracoes',
+        'salario',
     ];
 
     public function candidaturas()
