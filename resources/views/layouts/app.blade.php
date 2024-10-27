@@ -28,7 +28,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
-<body class="background">
+<body class="@if (!Route::is('login') && !Route::is('register') && !Route::is('password.request')) background-interno @else background @endif">
+
     <div id="app">
         <!-- Condicional para exibir o nav apenas se a rota não for login -->
         @if (!Route::is('login'))
@@ -38,7 +39,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/home') }}">
-                    <img src="{{ asset('assets/2.png') }}" alt="Logo" class="img-logo-interna">
+                    <img src="{{ asset('assets/logo.jpg') }}" alt="Logo" class="img-logo-interna">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

@@ -2,7 +2,7 @@
 :root {
     --grayishBlue: hsl(237, 18%, 59%);
     --softRed: hsl(345, 95%, 68%);
-    --softViolet: #940592;
+    --softViolet: #F3B816;
     --darkViolet: #6c0664;
     --softBlue: hsl(236, 21%, 26%);
     --darkBlue: hsl(235, 16%, 14%);
@@ -11,7 +11,7 @@
     --green: #3CB371;
     --red: #FF6347;
     --grey: #1d1d1d;
-    --background: #465359;
+    --background: #EBEBEB;
     --cardBorderColor: var(--softViolet);
     --tagSuccessBackground: var(--green);
     --tagDangerBackground: var(--red);
@@ -21,6 +21,13 @@
 /* Estilos */
 .background {
     background-color: var(--background);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.background-interno {
+    background-color: var(--white);
     width: 100%;
     height: 100%;
     position: absolute;
@@ -43,6 +50,16 @@
     border-top: 5px solid var(--cardBorderColor);
 }
 
+.card-cadastro {
+    border-radius: 5px;
+    box-shadow: 0px 20px 40px -20px var(--grayishBlue);
+    background-color: var(--background);
+    padding: 30px;
+    margin: 20px;
+    max-width: 60%;
+    margin: 0 auto;
+}
+
 .card-body-home {
     padding: 0rem !important;
 }
@@ -52,36 +69,71 @@
 }
 
 .img-logo {
-    max-width: 25%;
+    max-width: 55%;
+}
+
+.img-logo-footer {
+    max-width: 20%;
 }
 
 .img-logo-interna {
-    max-width: 35%;
+    max-width: 20%;
+}
+
+.capa {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.texto-institucional {
+    color: var(--grey);
+    font-size: 18px;
+    text-align: justify-center;
+    align-items: center;
+    max-width: 60%;
+    margin: 0 auto;
+}
+
+.footer {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.title-page {
+    color: var(--black);
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 20px;
 }
 
 .btn-principal {
     background-color: var(--softViolet);
-    color: var(--white);
+    color: var(--black);
     border: none;
     border-radius: 5px;
     padding: 8px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 19px;
     margin: 4px 2px;
     cursor: pointer;
 }
 
 .btn-principal:hover {
     color: var(--white);
-    background-color: var(--darkViolet);
+    background-color: var(--softBlue);
 }
 
 .btn-link {
     color: var(--grey);
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     text-decoration: none;
 }
 
@@ -90,11 +142,18 @@
     display: flex;
     justify-content: center;
     text-decoration: none;
+    font-weight: bold;
 }
 
 .btn-link:hover {
     color: var(--softViolet);
-    text-decoration: underline;
+}
+
+.input {
+    background-color: var(--background);
+    margin-bottom: 20px;
+    border-radius: 10px;
+    height: 40px;
 }
 
 .tag-success {

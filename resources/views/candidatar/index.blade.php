@@ -41,7 +41,7 @@
 
     <div class="row justify-content-center">
         <div class="col-md-8 mt-5">
-        <div class="card">
+            <div class="card">
                 <div class="card-body">
                     @if (session('status'))
                     <div class="alert alert-success" role="alert">
@@ -100,6 +100,12 @@
                         </div>
                     </form>
                 </div>
+            </div>
+            <div class="footer">
+                <center>
+                    <img src="{{ asset('assets/2.png') }}" alt="Logo" class="img-logo-footer mb-5 mt-3">
+                </center>
+               
             </div>
         </div>
     </div>
