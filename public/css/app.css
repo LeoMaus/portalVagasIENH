@@ -64,6 +64,26 @@
     padding: 0rem !important;
 }
 
+.ordem {
+    position: absolute;
+    top: 0px;       /* Distância do topo */
+    right: 10px;     /* Distância da borda direita */
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--red); /* Cor de fundo azul */
+    color: #ffffff;    /* Cor do texto branco */
+    border-radius: 50%; /* Formato redondo */
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.hidden {
+    display: none;
+  }
+
 .text-white {
     color: var(--white);
 }
@@ -194,3 +214,50 @@
     border: 1px solid var(--white);
     border-radius: 10%;
 }
+
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    margin-right: 10px;
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 20px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+  
+  input:checked + .slider {
+    background-color: var(--softViolet); /* Cor para o estado "On" */
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(20px);
+  }
