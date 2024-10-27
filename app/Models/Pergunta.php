@@ -30,6 +30,11 @@ class Pergunta extends Model
     {
         return $this->belongsToMany(Funcao::class, 'pergunta_funcao', 'pergunta_id', 'funcao_id');
     }
+
+    public function cargos()
+    {
+        return $this->belongsToMany(Funcao::class, 'pergunta_cargo', 'pergunta_id', 'cargo_id');
+    }
     
 
     public function respostas()

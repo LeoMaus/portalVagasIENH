@@ -78,14 +78,14 @@
 
                         <div class="form-group mb-2 mt-3">
                         <!-- Outros campos da pergunta -->
-                        <label for="funcoes">Vincular pergunta à função:</label>
-                        <a href="#" data-toggle="collapse" data-target="#funcoes-collapse">Mostrar funções</a>
-                            <div id="funcoes-collapse" class="collapse">
+                        <label for="cargos">Vincular pergunta ao cargo:</label>
+                        <a href="#" data-toggle="collapse" data-target="#cargos-collapse">Mostrar cargos</a>
+                            <div id="cargos-collapse" class="collapse">
                                 <div class="list-group">
-                                    @foreach ($funcoes as $funcao)
+                                    @foreach ($cargos as $cargo)
                                         <label class="list-group-item">
-                                            <input type="checkbox" name="funcoes[]" value="{{ $funcao->id }}" class="form-check-input" {{isset($perguntaFuncoes) && in_array($funcao->id, $perguntaFuncoes) ? 'checked' : '' }} >
-                                            {{ $funcao->nome }}
+                                            <input type="checkbox" name="cargos[]" value="{{ $cargo->id }}" class="form-check-input" {{isset($perguntaCargos) && in_array($cargo->id, $perguntaCargos) ? 'checked' : '' }} >
+                                            {{ $cargo->nome }}
                                         </label>
                                 @endforeach
                                 </div>

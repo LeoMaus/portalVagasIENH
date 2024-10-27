@@ -1,13 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\Pergunta;
 use App\Models\Vaga;
-use App\Models\PerguntaVaga;
-use App\Models\Funcao;
-use App\Models\PerguntaFuncao;
+use App\Models\Cargo;
+use App\Models\PerguntaCargo;
 
 class PerguntaController extends Controller
 {
@@ -31,8 +29,8 @@ class PerguntaController extends Controller
     public function create()
     {
         $vagas = Vaga::all();
-        $funcoes = Funcao::all();
-        return view('pergunta.form', compact('vagas', 'funcoes'));
+        $cargos = Cargo::all();
+        return view('pergunta.form', compact('vagas', 'cargos'));
     }
 
     /**
@@ -51,7 +49,7 @@ class PerguntaController extends Controller
 
         $pergunta = new Pergunta($data);
         $pergunta->save();
-        $pergunta->funcoes()->attach($request->input('funcoes', []));
+        $pergunta->cargos()->attach($request->input('cargos', []));
 
         return redirect()
             ->route('pergunta.show', ['pergunta' => $pergunta->id])
@@ -82,10 +80,10 @@ class PerguntaController extends Controller
     public function edit(Pergunta $pergunta)
     {
         $vagas = Vaga::all();
-        // $perguntaVagas = PerguntaVaga::where('pergunta_id', $pergunta->id)->pluck('vaga_id')->toArray();
-        $perguntaFuncoes = PerguntaFuncao::where('pergunta_id', $pergunta->id)->pluck('funcao_id')->toArray();
+        $perguntaCargos = PerguntaCargo::where('pergunta_id', $pergunta->id)->pluck('cargo_id')->toArray();
+        $cargos = Cargo::all();
 
-        return view('pergunta.form', compact('pergunta', 'vagas', 'perguntaFuncoes'));
+        return view('pergunta.form', compact('pergunta', 'vagas', 'perguntaCargos', 'cargos'));
     }
 
     /**
@@ -106,7 +104,7 @@ class PerguntaController extends Controller
         $pergunta->update($data);
 
         // $pergunta->vagas()->sync($request->input('vagas', []));
-        $pergunta->funcoes()->sync($request->input('funcoes', []));
+        $pergunta->cargos()->sync($request->input('cargos', []));
 
         return redirect()
             ->route('pergunta.show', ['pergunta' => $pergunta->id])

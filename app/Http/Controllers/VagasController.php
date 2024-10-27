@@ -10,6 +10,10 @@ use App\Models\Email;
 use App\Models\UnidadeNegocio;
 use App\Models\Funcao;
 use App\Models\VagaFuncao;
+use App\Models\Area;
+use App\Models\Cargo;
+use Illuminate\Support\Facades\Log;
+
 
 class VagasController extends Controller
 {
@@ -25,8 +29,10 @@ class VagasController extends Controller
         // Direcionar para página de criar vaga
         $unidades_negocio = UnidadeNegocio::all();
         $funcoes = Funcao::all();
+        $setores = Area::all();
+        $cargos = Cargo::all();
 
-        return view('vagas.create', compact('unidades_negocio', 'funcoes'));
+        return view('vagas.create', compact('unidades_negocio', 'funcoes', 'setores', 'cargos'));
     }
 
     public function destroy($id)
@@ -92,51 +98,87 @@ class VagasController extends Controller
 
     public function store(Request $request)
     {
-        view('vagas.index');
-
+        Log::info('Início do método store', ['dadosRecebidos' => $request->all()]);
+    
         // Validação dos dados recebidos
-        $request->validate([
+        $validated = $request->validate([
             'titulo' => 'required|string|max:255',
-            'status' => 'required|string',
+            'unidade' => 'required|exists:unidade_negocio,id',
+            'setor' => 'required|exists:area,id',
+            'cargo' => 'required|exists:cargo,id',
             'descricao' => 'required|string',
-            'unidade' => 'required|exists:unidade_negocio,id', // Verifique se a unidade existe
-            'funcoes' => 'array', // As funções devem ser um array
-            'funcoes.*' => 'exists:funcao,id' // Cada função deve existir na tabela de funções
+            'data_inicio_vigencia' => 'required|date',
+            'data_termino_vigencia' => 'required|date',
+            'prazo_contratacao' => 'required|date',
+            'tipo_vaga' => 'required|string',
+            'situacao' => 'required|string',
+            'ativo' => 'required|string',
+            'salario' => 'required|numeric',
+            'funcoes' => 'array',
+            'funcoes.*' => 'exists:funcao,id',
+            'user_id' => 'required|exists:users,id',
         ]);
-
+    
+        Log::info('Validação concluída', ['dadosValidados' => $validated]);
+    
+        try {
             // Criação da nova vaga
-        $vaga = Vaga::create([
-            'titulo' => $request->input('titulo'),
-            'status' => $request->input('status'),
-            'descricao' => $request->input('descricao'),
-            'id_un' => $request->input('unidade')
-        ]);
-
+            $vaga = Vaga::create([
+                'titulo' => $request->input('titulo'),
+                'status' => $request->input('ativo'),
+                'descricao' => $request->input('descricao'),
+                'id_un' => $request->input('unidade'),
+                'setor_responsavel_id' => $request->input('setor'),
+                'cargo_id' => $request->input('cargo'),
+                'data_inicio_vigencia' => $request->input('data_inicio_vigencia'),
+                'data_termino_vigencia' => $request->input('data_termino_vigencia'),
+                'prazo_contratacao' => $request->input('prazo_contratacao'),
+                'tipo_vaga' => $request->input('tipo_vaga'),
+                'situacao_vaga' => $request->input('situacao'),
+                'salario' => $request->input('salario'),
+                'usuario_criacao_id' => $request->input('user_id'),
+            ]);
+            Log::info('Vaga criada com sucesso', ['vagaId' => $vaga->id]);
+    
             // Cadastra a relação entre vaga e funções
-        $funcoes = $request->input('funcoes', []); // Obtenha as funções, ou um array vazio
-        $vaga->funcoes()->attach($funcoes); // Associe as funções à nova vaga
-
-
-        //busca nome da unidade com base no id recebido no request
-        $unidade = UnidadeNegocio::find($request->input('unidade'));
-
-
-
-
-        // Busca o email no banco de dados
-        $email = Email::where('template', 'abertura_vaga')->first();
-        // decodifica o array de emails
-        $destinatarios = json_decode($email->email);
-        // Envia o email após a inclusão
-        if ($request->input('status') == 'Aberta') {
-        Mail::to($destinatarios)->send(new \App\Mail\NovoRegistroEmail($request->input('titulo'), $unidade->descricao, $request->input('status')));
-        
+            $funcoes = $request->input('funcoes', []);
+            $vaga->funcoes()->attach($funcoes);
+            Log::info('Funções associadas à vaga', ['funcoes' => $funcoes]);
+    
+            // Busca o nome da unidade com base no ID recebido no request
+            $unidade = UnidadeNegocio::find($request->input('unidade'));
+            Log::info('Unidade encontrada', ['unidade' => $unidade]);
+    
+            // Busca o email no banco de dados
+            $email = Email::where('template', 'abertura_vaga')->first();
+            $destinatarios = json_decode($email->email);
+            Log::info('Destinatários de email encontrados', ['destinatarios' => $destinatarios]);
+    
+            // Envia o email após a inclusão
+            if ($request->input('status') == 'Aberta') {
+                Mail::to($destinatarios)->send(new \App\Mail\NovoRegistroEmail(
+                    $request->input('titulo'),
+                    $unidade->descricao,
+                    $request->input('status')
+                ));
+                Log::info('Email enviado para destinatários', ['titulo' => $request->input('titulo'), 'status' => $request->input('status')]);
+            }
+    
+        } catch (\Exception $e) {
+            Log::error('Erro ao criar vaga ou enviar email', [
+                'message' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+            ]);
+            return redirect()
+                ->route('vaga.index')
+                ->with('error', 'Erro ao adicionar vaga.');
         }
-
+    
         return redirect()
             ->route('vaga.index')
             ->with('success', 'Vaga adicionada com sucesso.');
     }
+    
 
 
  

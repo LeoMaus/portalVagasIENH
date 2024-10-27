@@ -65,8 +65,11 @@
                   <th>Título</th>
                   <th>Unidade</th>
                   <th>Descrição</th>
-                  <th>Status</th>
-                  <th>Data Criação</th>
+                  <th>Ativo</th>
+                  <th>Início vigência</th>
+                  <th>Término vigência</th>
+                  <th>Prazo contratação</th>
+                  <th>Salário</th>
 
                   <th class="actions">Ações</th>
                 </tr>
@@ -76,13 +79,17 @@
                   @foreach ($vagas as $vaga)
                   <td>{{ $vaga->titulo }} </td>
                   <td>{{ $vaga->unidade->descricao }}</td>
-                  <td>{{ $vaga->status }}</td>
                   <td>{{ $vaga->descricao }}</td>
-                  <td>{{$vaga->created_at}}</td>
+                  <td>{{ $vaga->status }}</td>
+                  <td>{{$vaga->data_inicio_vigencia}}</td>
+                  <td>{{$vaga->data_termino_vigencia}}</td>
+                  <td>{{$vaga->prazo_contratacao}}</td>
+                  <td>{{$vaga->salario}}</td>
+
                   <td class='actions'>
                     <a class='btn btn-warning btn-xs' href="{{ route('vaga.edit', ['vaga' => $vaga->id]) }}"><span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Editar</a>
                     <a class='btn btn-danger btn-xs delete-vaga-btn' href='#' data-toggle='modal' data-target='#confirmDeleteModal' data-url="{{ route('vaga.destroy', ['vaga' => $vaga->id]) }}"><span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Excluir</a>
-                    <a class='btn btn-success btn-xs' href="{{ route('curriculosVaga.index', $vaga->id) }}">Candidaturas</a>
+                    <a class='btn btn-success btn-xs' href="{{ route('curriculosVaga.index', $vaga->id) }}">Candidatos</a>
                   </td>
                 </tr>
                 @endforeach

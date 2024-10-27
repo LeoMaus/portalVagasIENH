@@ -23,4 +23,9 @@ class Cargo extends Model
     // Se você estiver usando timestamps automáticos, deixe isso como verdadeiro
     // Caso contrário, defina como falso
     public $timestamps = true;
+
+    public function perguntas()
+    {
+        return $this->belongsToMany(Pergunta::class, 'respostas', 'vaga_id', 'pergunta_id', 'pergunta_cargo');
+    }
 }
