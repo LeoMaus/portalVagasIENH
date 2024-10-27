@@ -60,6 +60,8 @@ class VagasController extends Controller
         $vagaFuncoes = VagaFuncao::where('vaga_id', $vaga->id)->pluck('funcao_id')->toArray();
         $unidades_negocio = UnidadeNegocio::all();
         $funcoes = Funcao::all();
+        $setores = Area::all();
+        $cargos = Cargo::all();
 
 
 
@@ -69,32 +71,76 @@ class VagasController extends Controller
                 ->with('error', 'Vaga não encontrada.');
         }
 
-        return view('vagas.edit', compact('vaga', 'vagaFuncoes', 'funcoes', 'unidades_negocio'));
+        return view('vagas.edit', compact('vaga', 'vagaFuncoes', 'funcoes', 'unidades_negocio', 'setores', 'cargos'));
     }
 
     public function update(Request $request, $id)
     {
         // Lógica para editar a vaga com o ID fornecido
-        $vagas = Vaga::find($id);
-
-        if (!$vagas) {
+        $vaga = Vaga::find($id);
+    
+        if (!$vaga) {
             return redirect()
                 ->route('vaga.index')
                 ->with('error', 'Vaga não encontrada.');
         }
-
-        $vagas->titulo = $request->input('titulo');
-        $vagas->id_un = $request->input('unidade');
-        $vagas->status = $request->input('status');
-        $vagas->save();
-
+    
+        // Captura os valores antigos antes da alteração
+        $oldValues = [
+            'titulo' => $vaga->titulo,
+            'unidade' => $vaga->id_un,
+            'status' => $vaga->status,
+            'descricao' => $vaga->descricao,
+            'setor' => $vaga->setor_responsavel_id,
+            'cargo' => $vaga->cargo_id,
+            'data_inicio_vigencia' => $vaga->data_inicio_vigencia,
+            'data_termino_vigencia' => $vaga->data_termino_vigencia,
+            'prazo_contratacao' => $vaga->prazo_contratacao,
+            'tipo_vaga' => $vaga->tipo_vaga,
+            'situacao' => $vaga->situacao_vaga,
+            'salario' => $vaga->salario,
+        ];
+    
+        // Registra as alterações a serem feitas
+        $changedFields = [];
+    
+        // Atualiza os valores da vaga e verifica alterações
+        foreach ($oldValues as $key => $oldValue) {
+            $newValue = $request->input($key);
+            if ($oldValue != $newValue) {
+                $vaga->$key = $newValue; // Atualiza o valor da vaga
+                $changedFields[$key] = [
+                    'old' => $oldValue,
+                    'new' => $newValue,
+                ];
+            }
+        }
+    
+        // Se houver alterações, registra no log
+        if (!empty($changedFields)) {
+            $logEntry = [
+                'data' => now()->format('Y-m-d H:i:s'),
+                'usuario_id' => $request->input('user_id'), // ID do usuário que fez a alteração
+                'alteracoes' => $changedFields,
+            ];
+    
+            // Atualiza o campo log_alteracoes
+            $vaga->log_alteracoes .= ' | ' . json_encode($logEntry);
+        }
+    
+        // Salva a vaga atualizada
+        $vaga->save();
+    
+        // Atualiza as funções associadas à vaga
         $funcoes = $request->input('funcoes', []); // Obtenha as funções, ou um array vazio
-        $vagas->funcoes()->sync($funcoes); // Associe as funções à nova vaga
-
+        $vaga->funcoes()->sync($funcoes); // Associe as funções à nova vaga
+    
         return redirect()
             ->route('vaga.index')
             ->with('success', 'Vaga editada com sucesso.');
     }
+    
+
 
     public function store(Request $request)
     {

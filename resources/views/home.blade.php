@@ -21,7 +21,7 @@
     <!-- Centralizar os cards e diminuir o espaçamento entre eles -->
     <div class="row d-flex justify-content-center mt-5">
         @foreach ($vagas as $vaga)
-        @if($vaga->status == 'Aberta')
+        @if($vaga->status == 'Sim')
         <div class="col-md-4 d-flex justify-content-center mb-3"> <!-- Diminuir o espaçamento entre os cards com 'mb-3' -->
             <!-- Aumentar a largura dos cards -->
             <div class="card" style="width: 400px;"> <!-- Aumentado para 400px -->

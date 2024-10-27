@@ -81,9 +81,9 @@
                   <td>{{ $vaga->unidade->descricao }}</td>
                   <td>{{ $vaga->descricao }}</td>
                   <td>{{ $vaga->status }}</td>
-                  <td>{{$vaga->data_inicio_vigencia}}</td>
-                  <td>{{$vaga->data_termino_vigencia}}</td>
-                  <td>{{$vaga->prazo_contratacao}}</td>
+                  <td>{{ \Carbon\Carbon::parse($vaga->data_inicio_vigencia)->format('d/m/y') }}</td>
+                  <td>{{ \Carbon\Carbon::parse($vaga->data_termino_vigencia)->format('d/m/y') }}</td>
+                  <td>{{ \Carbon\Carbon::parse($vaga->prazo_contratacao)->format('d/m/y') }}</td>
                   <td>{{$vaga->salario}}</td>
 
                   <td class='actions'>

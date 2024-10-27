@@ -163,7 +163,7 @@
 
                         <!-- tipo de vaga -->
                         <div class="form-group mb-2">
-                            <label for="tipo_vaga">{{ __('Tipo de vaga') }}</label>
+                            <label for="tipo_vaga">{{ __('Tipo de contrato') }}</label>
                             
                             <select class="form-select form-select-md mb-3" aria-label="Large select example" id="tipo_vaga" type="tipo_vaga" class="form-control @error('tipo_vaga') is-invalid @enderror" name="tipo_vaga" value="{{ old('tipo_vaga') }}" required autocomplete="tipo_vaga">
                                 <option value="Estágio" selected>Estágio </option>
