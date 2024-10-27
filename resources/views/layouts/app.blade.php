@@ -75,7 +75,7 @@
                             <a class="nav-link" href="{{ route('cadastros.index') }}">{{ __('Cadastros') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('users') }}">{{ __('Usuários') }}</a>
+                            <a class="nav-link" href="{{ route('candidatos.index') }}">{{ __('Candidatos') }}</a>
                         </li>
                         <!-- Fim menu usuário administrador -->
                         @endif

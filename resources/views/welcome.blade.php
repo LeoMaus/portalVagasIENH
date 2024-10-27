@@ -16,58 +16,51 @@
     </div>
 
 
-    <div class="row d-flex justify-content-center mt-5">
-        <div class="col-md-12">
-            <h2 class="text-center ">Confira as oportunidades</h2>
-        </div>
-    </div>
+   
     <div class="row d-flex justify-content-center mt-4">
 
         <div class="col-md-8">           
            
-                    <center>
-                    @if(session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
-                    @endif
+            <center>
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
 
-                    @if(session('error'))
-                        <div class="alert alert-danger">
-                            {{ session('error') }}
-                        </div>
-                    @endif
-                    </center>
-                    <form method="POST" action="{{ route('area.interesseArea') }}">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="areaSelect" class="form-label">Área de Atuação</label>
-                        <select id="areaSelect" name="area_id" class="form-select" onchange="updateDescription()" >
-                            @foreach ($areas as $area)
-                                <option value="{{ $area->id }}" data-descricao="{{ $area->descricao }}">{{ $area->nome }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+            @if(session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+            </center>
 
-                    <div class="mb-3">
-                        <label for="areaDescricao" class="form-label">Descrição da Área</label>
-                        <textarea class="form-control" id="areaDescricao" value="" readonly> </textarea>
-                    </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-principal mt-3">Banco de Talentos</button>
-                        </div>
-                    </form>
+            <h2 class="text-center mt-4">Confira as oportunidades</h2>
+            <form method="POST" action="{{ route('area.interesseArea') }}">
+            @csrf
+            <div class="mb-3">
+                <label for="areaSelect" class="form-label">Área de Atuação</label>
+                <select id="areaSelect" name="area_id" class="form-select" onchange="updateDescription()" >
+                    @foreach ($areas as $area)
+                        <option value="{{ $area->id }}" data-descricao="{{ $area->descricao }}">{{ $area->nome }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="areaDescricao" class="form-label">Descrição da Área</label>
+                <textarea class="form-control" id="areaDescricao" value="" readonly> </textarea>
+            </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-principal mt-3">Banco de Talentos</button>
+                </div>
+            </form>
        
 
-            <div class="row d-flex justify-content-center mt-5">
-                <div class="col-md-12">
-                    <h2 class="text-center ">Vagas encontradas</h2>
-                </div>
-            </div>
-             <!-- Centralizar os cards e diminuir o espaçamento entre eles -->
-            <div class="row d-flex justify-content-center mt-5">
+            <h2 class="text-center mt-5">Vagas encontradas</h2>
+            <div class="row d-flex justify-content-center mt-2">
                 @foreach ($vagas as $vaga)
-                @if($vaga->status == 'Aberta')
+                @if($vaga->status == 'Sim')
                 <div class="col-md-4 d-flex justify-content-center mb-3"> <!-- Diminuir o espaçamento entre os cards com 'mb-3' -->
                     <!-- Aumentar a largura dos cards -->
                     <div class="card" style="width: 400px;"> <!-- Aumentado para 400px -->

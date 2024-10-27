@@ -214,9 +214,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::name('update.modelo.email')->put('editar-modelo/{template}', [$class, 'update']);
     });
 
+    # rotas para ver candidatos
+    Route::name('candidatos.')->prefix('candidatos')->group(function () {
+        $class = Controllers\CandidatosController::class;
+        Route::name('index')   ->get('',            [$class, 'index']); 
+    });
 
-
-
+    Route::get('/candidatos', [Controllers\CandidatosController::class, 'index'])->name('candidatos.index');
 });
 
 
