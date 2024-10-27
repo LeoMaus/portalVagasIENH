@@ -15,40 +15,7 @@
         <p class="text-center texto-institucional">A IENH, instituição de ensino com tradição e excelência, está sempre em busca de inovação e crescimento. Em breve, lançaremos novas oportunidades de trabalho para integrar nosso time dedicado à educação de qualidade. Se você deseja fazer parte de um ambiente que valoriza o conhecimento e o desenvolvimento profissional, fique atento às vagas que serão divulgadas. Venha construir o futuro com a gente!</p>
     </div>
 
-<<<<<<< HEAD
-    <!-- Centralizar os cards e diminuir o espaçamento entre eles -->
-    <div class="row d-flex justify-content-center mt-5">
-        @foreach ($vagas as $vaga)
-        @if($vaga->status == 'Sim')
-        <div class="col-md-4 d-flex justify-content-center mb-3"> <!-- Diminuir o espaçamento entre os cards com 'mb-3' -->
-            <!-- Aumentar a largura dos cards -->
-            <div class="card" style="width: 400px;"> <!-- Aumentado para 400px -->
-                <div class="card-body card-body-home">
-                    <h5 class="card-title">{{ $vaga->titulo }}</h5>
-                    <div class="row">
-                        <div class="col-md-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                                <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
-                            </svg>
-                        </div>
-                        <div class="col-md-9">
-                            <p class="card-text">{{ $vaga->unidade->descricao }}</p>
-                        </div>
-                    </div>
-                    @if(Auth::user()->role == 'user')
-                    <a href="{{ route('candidatar.index', $vaga->id ) }}" class="btn btn-principal mt-3">Candidate-se</a>
-                    @endif
-                </div>
-            </div>
-        </div>
-        @endif
-        @endforeach
-    </div>
-        @if(Auth::user()->role == 'user')
-
-=======
     @if(Auth::user()->role == 'user')
->>>>>>> 4ad8c1e8965e598c4e7b6237203565564355c19f
     <div class="row d-flex justify-content-center mt-5">
         <div class="col-md-12">
             <h2 class="text-center ">Confira as oportunidades</h2>

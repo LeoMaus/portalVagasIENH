@@ -53,7 +53,7 @@
                             <label for="setor">{{ __('Setor responsável') }}</label>
                             <select class="form-select form-select-md mb-3" id="setor" name="setor" required>
                                 @foreach($setores as $setor)
-                                    <option value="{{ $setor->id }}" {{ $vaga->setor_id == $setor->id ? 'selected' : '' }}>{{ $setor->nome }}</option>
+                                    <option value="{{ $setor->id }}" {{ $vaga->setor_responsavel_id == $setor->id ? 'selected' : '' }}>{{ $setor->nome }}</option>
                                 @endforeach
                             </select>
 

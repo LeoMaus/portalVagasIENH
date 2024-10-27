@@ -52,19 +52,19 @@
                         <div class="form-group mb-2">
                             <label for="setor">{{ __('Setor responsável') }}</label>
                             
-                            <select class="form-select form-select-md mb-3" aria-label="Large select example" id="setor" type="setor" class="form-control @error('setor') is-invalid @enderror" name="setor" value="{{ old('setor') }}" required autocomplete="setor">
-                            @foreach($setores as $setor)
-                                <option value="{{$setor->id}}">{{$setor->nome}}</option>
-                            @endforeach
+                            <select class="form-select form-select-md mb-3" id="setor" name="setor" required>
+                                @foreach($setores as $setor)
+                                    <option value="{{ $setor->id }}" {{ old('setor', $vaga->setor_id) == $setor->id ? 'selected' : '' }}>{{ $setor->nome }}</option>
+                                @endforeach
                             </select>
 
-                            @error('status')
+                            @error('setor')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        
                         </div>
+
 
 
                         <div class="form-group mb-2 mt-3">

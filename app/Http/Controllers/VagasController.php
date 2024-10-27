@@ -97,7 +97,7 @@ class VagasController extends Controller
             'data_termino_vigencia' => $vaga->data_termino_vigencia,
             'prazo_contratacao' => $vaga->prazo_contratacao,
             'tipo_vaga' => $vaga->tipo_vaga,
-            'situacao' => $vaga->situacao_vaga,
+            'situacao_vaga' => $vaga->situacao_vaga,
             'salario' => $vaga->salario,
         ];
     
