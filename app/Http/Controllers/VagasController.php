@@ -13,7 +13,7 @@ use App\Models\VagaFuncao;
 use App\Models\Area;
 use App\Models\Cargo;
 use Illuminate\Support\Facades\Log;
-
+use App\Models\Pergunta;
 
 class VagasController extends Controller
 {
@@ -209,6 +209,20 @@ class VagasController extends Controller
                 ));
                 Log::info('Email enviado para destinatários', ['titulo' => $request->input('titulo'), 'status' => $request->input('status')]);
             }
+
+            // cadastrar pergunta vinculada a vaga
+            $data = [
+                'pergunta'   => $request->input('pergunta'),
+                'options'    => ($request->input('text_resp') == True ? null : $request->input('options')),
+                'mult_resps' => ($request->input('text_resp') == True ? null : ($request->input('mult_resps') == True)),
+            ];
+    
+            $pergunta = new Pergunta($data);
+            $pergunta->save();
+
+            // Cadastra a relação entre pergunta e vaga
+            $pergunta->vagas()->attach($vaga->id);
+            Log::info('Pergunta associada à vaga', ['pergunta' => $pergunta]);
     
         } catch (\Exception $e) {
             Log::error('Erro ao criar vaga ou enviar email', [
