@@ -25,7 +25,7 @@
                 </div>
             @endif
 
-            <div class="table-responsive col-md-12">
+            <div class="col-md-12">
                 <div class="d-flex justify-content-between align-items-center">
                     <h2 class="mb-0">Cadastros</h2> <!-- mb-0 remove a margem inferior padrão do h2 -->
                     <div class="d-flex align-items-center gap-2">
@@ -91,10 +91,6 @@
                                 @endif
                             @endforeach
                         </div>
-                        
-                        
-                        
-
                     </div>
                 </div>
             </div>

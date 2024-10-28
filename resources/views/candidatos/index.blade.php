@@ -25,7 +25,7 @@
                 </div>
             @endif
 
-            <div class="table-responsive col-md-12">
+            <div class="col-md-12">
                 <h2 class="mb-0">Candidatos</h2>
                 
                     @php
