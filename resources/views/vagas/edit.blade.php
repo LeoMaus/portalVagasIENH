@@ -217,9 +217,69 @@
                         <!-- input hidden user id que fez a alteração -->
                         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                         
+                        <div class="row mb-3 mt-5">
+                            <div class="col-md-9">
+                                <h4 class="text-left mb-3">Perguntas específicas da vaga</h4>
+                            </div>
+                        </div>
+                        
+                        <h2>Perguntas Associadas</h2>
+                        @foreach($perguntas as $pergunta)
+                            <div class="form-group mb-2">
+                                <label for="pergunta">{{ __('Pergunta') }}</label>
+                                <input id="pergunta_{{ $pergunta->id }}" type="text" class="form-control @error('pergunta') is-invalid @enderror" name="pergunta[{{ $pergunta->id }}]" value="{{ $pergunta->pergunta ?? '' }}" required autocomplete="pergunta" autofocus>
+                            </div>
+                        
+                            <div class="form-check mt-3">
+                                <input class="form-check-input" type="checkbox" id="text_resp_{{ $pergunta->id }}" name="text_resp[{{ $pergunta->id }}]" value='true' {{ ($pergunta->freeText ?? true) ? 'checked' : '' }}>
+                                <label class="form-check-label" for="text_resp_{{ $pergunta->id }}">
+                                    Resposta em texto livre?
+                                </label>
+                            </div>
+                        
+                            <div id='opt_resp_{{ $pergunta->id }}' style="display: {{ ($pergunta->freeText ?? true) ? 'none' : 'block' }}">
+                                <br><br>
+                        
+                                <div class="form-group mb-2" id="opcoes-container">
+                                    <label class="form-check-label">Escreva uma opção de resposta:</label>
+                                    <input id='input_option_{{ $pergunta->id }}' type="text" class="form-control">
+                                </div>
+                        
+                                <div class="form-group mb-2" id="opcoes-container">
+                                    <button type="button" class="btn btn-principal adicionar-opcao" data-pergunta-id="{{ $pergunta->id }}">Adicionar Opção</button>
 
-
-
+                                </div>
+                        
+                                <div class="form-group mb-2 mt-4">
+                                    <input id='options_{{ $pergunta->id }}' type="hidden" name="options[{{ $pergunta->id }}]" value="{{ $pergunta->options ?? '' }}">
+                        
+                                    <table class="table table-bordered">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th style="width: 90%;">Opção</th>
+                                                <th style="width: 10%;">Excluir</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id='tbodyOptions_{{ $pergunta->id }}'>
+                                            @foreach($pergunta->optionsList ?? [] as $option)
+                                                <tr>
+                                                    <td class='opcoes'>{{ $option }}</td>
+                                                    <td><button type="button" class="btn btn-danger" onclick="removeOpt(this)">Excluir</button></td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                        
+                                <div class="form-check mt-3">
+                                    <input class="form-check-input text_resp" type="checkbox" id="text_resp_{{ $pergunta->id }}" name="text_resp[{{ $pergunta->id }}]" value='true' {{ ($pergunta->freeText ?? true) ? 'checked' : '' }} data-pergunta-id="{{ $pergunta->id }}">
+                                    <label class="form-check-label" for="mult_resps_{{ $pergunta->id }}">
+                                        Permitir múltiplas respostas
+                                    </label>
+                                </div>
+                            </div>
+                        @endforeach
+                        
 
                         <div class="form-group mb-2">
                             <center>
@@ -242,5 +302,54 @@
         </div>
     </div>
 </div>
+
+
+<script type="text/javascript">
+    document.querySelectorAll('.adicionar-opcao').forEach((button) => {
+        button.addEventListener('click', function() {
+            let inputId = 'input_option_' + this.dataset.perguntaId; // ID do input baseado no ID da pergunta
+            let input = document.getElementById(inputId);
+
+            let tbodyId = 'tbodyOptions_' + this.dataset.perguntaId; // ID do tbody baseado no ID da pergunta
+            let tbody = document.getElementById(tbodyId);
+            let tr = tbody.insertRow(-1);
+            let td = tr.insertCell(0);
+            td.textContent = input.value;
+            td.classList.add('opcoes');
+
+            tr.insertCell(1).innerHTML = '<button type="button" class="btn btn-danger" onclick="removeOpt(this)">Excluir</button>';
+
+            input.value = '';
+
+            attOptions(tbodyId, inputId);
+        });
+    });
+
+    document.querySelectorAll('.text_resp').forEach((checkbox) => {
+        checkbox.addEventListener('click', function() {
+            let optRespId = 'opt_resp_' + this.dataset.perguntaId; // ID do div opt_resp baseado no ID da pergunta
+            document.getElementById(optRespId).style.display = this.checked ? 'none' : 'block';
+        });
+    });
+
+    function attOptions(tbodyId, inputId) {
+        let options = document.getElementById('options_' + inputId.split('_')[2]); // ID baseado no input
+
+        let conteudos = [];
+        let divs = document.querySelectorAll(`#${tbodyId} .opcoes`);
+        divs.forEach((div) => {
+            conteudos.push(div.textContent || div.innerText);
+        });
+
+        options.value = JSON.stringify(conteudos);
+    }
+
+    function removeOpt(el) {
+        el.closest('tr').remove();
+        attOptions(el.closest('tbody').id, el.closest('tbody').previousElementSibling.querySelector('input').id);
+    }
+</script>
+
+
 
 @endsection

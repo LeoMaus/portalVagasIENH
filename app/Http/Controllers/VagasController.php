@@ -14,6 +14,7 @@ use App\Models\Area;
 use App\Models\Cargo;
 use Illuminate\Support\Facades\Log;
 use App\Models\Pergunta;
+use App\Models\PerguntaVaga;
 
 class VagasController extends Controller
 {
@@ -63,15 +64,22 @@ class VagasController extends Controller
         $setores = Area::all();
         $cargos = Cargo::all();
 
+       // Localizar vínculo na tabela pergunta_vaga de acordo com a vaga que será editada
+        $perguntasVinculadas = PerguntaVaga::where('vaga_id', $vaga->id)->get();
 
+        // Obter os IDs das perguntas vinculadas
+        $idsPerguntas = $perguntasVinculadas->pluck('pergunta_id');
 
+        // Buscar as perguntas correspondentes usando os IDs
+        $perguntas = Pergunta::whereIn('id', $idsPerguntas)->get();
+       
         if (!$vaga) {
             return redirect()
                 ->route('vaga.index')
                 ->with('error', 'Vaga não encontrada.');
         }
 
-        return view('vagas.edit', compact('vaga', 'vagaFuncoes', 'funcoes', 'unidades_negocio', 'setores', 'cargos'));
+        return view('vagas.edit', compact('vaga', 'vagaFuncoes', 'funcoes', 'unidades_negocio', 'setores', 'cargos', 'perguntas'));
     }
 
     public function update(Request $request, $id)
@@ -134,6 +142,17 @@ class VagasController extends Controller
         // Atualiza as funções associadas à vaga
         $funcoes = $request->input('funcoes', []); // Obtenha as funções, ou um array vazio
         $vaga->funcoes()->sync($funcoes); // Associe as funções à nova vaga
+
+        // Atualiza a pergunta vinculada a vaga
+        $data = [
+            'pergunta'   => $request->input('pergunta'),
+            'options'    => ($request->input('text_resp') == True ? null : $request->input('options')),
+            'mult_resps' => ($request->input('text_resp') == True ? null : ($request->input('mult_resps') == True)),
+        ];
+
+        $pergunta->update($data);
+        $pergunta->vagas()->sync($request->input('vagas', []));
+        
     
         return redirect()
             ->route('vaga.index')
