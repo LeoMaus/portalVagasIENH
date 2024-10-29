@@ -128,14 +128,17 @@ class AreaController extends Controller
         if($formacao > 0 && $dadosPessoais > 0 && $curriculo > 0 && $endereco > 0){
             if($userArea > 0){
                 // Redirecionar para a lista de funções com uma mensagem de erro
+                @dd('Você já possui interesse nesta área de atuação!');
                 return redirect()->route('home')->with('error', 'Você já possui interesse nesta área de atuação!');
             }
             // Criar um novo interesse com os dados fornecidos
             UserArea::create($request->all());
             // Redirecionar para a lista de funções com uma mensagem de sucesso
+            @dd('Interesse criado com sucesso!');
             return redirect()->route('home')->with('success', 'Interesse criado com sucesso!');
         }else{
             // Redirecionar para a lista de funções com uma mensagem de erro
+            @dd('Complete seu perfil para sinalizar interesse neste área de atuação. Todos os dados pessoais são necessários, formação, curriculo e endereço!');
             return redirect()->route('home')->with('error', 'Complete seu perfil para sinalizar interesse neste área de atuação. Todos os dados pessoais são necessários, formação, curriculo e endereço!');
         }
 

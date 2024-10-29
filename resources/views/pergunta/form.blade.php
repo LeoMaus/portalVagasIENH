@@ -78,7 +78,7 @@
 
                         <div class="form-group mb-2 mt-3">
                         <!-- Outros campos da pergunta -->
-                        <label for="cargos">Vincular pergunta ao cargo:</label>
+                        <label for="cargos">Vincular pergunta a cargos:</label>
                         <a href="#" data-toggle="collapse" data-target="#cargos-collapse">Mostrar cargos</a>
                             <div id="cargos-collapse" class="collapse">
                                 <div class="list-group">
@@ -86,6 +86,22 @@
                                         <label class="list-group-item">
                                             <input type="checkbox" name="cargos[]" value="{{ $cargo->id }}" class="form-check-input" {{isset($perguntaCargos) && in_array($cargo->id, $perguntaCargos) ? 'checked' : '' }} >
                                             {{ $cargo->nome }}
+                                        </label>
+                                @endforeach
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-2 mt-3">
+                        <!-- Outros campos da pergunta -->
+                        <label for="vagas">Vincular pergunta a vagas específicas:</label>
+                        <a href="#" data-toggle="collapse" data-target="#vagas-collapse">Mostrar vagas</a>
+                            <div id="vagas-collapse" class="collapse">
+                                <div class="list-group">
+                                    @foreach ($vagas as $vaga)
+                                        <label class="list-group-item">
+                                            <input type="checkbox" name="vagas[]" value="{{ $vaga->id }}" class="form-check-input" {{isset($perguntaVagas) && in_array($vaga->id, $perguntaVagas) ? 'checked' : '' }} >
+                                            {{ $vaga->titulo }}
                                         </label>
                                 @endforeach
                                 </div>

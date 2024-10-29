@@ -26,15 +26,21 @@ class Pergunta extends Model
         ->withPivot('required'); // Outras colunas pivot, se necessário
     }
 
+    public function cargos(){
+        return $this->belongsToMany(Cargo::class, 'pergunta_cargo')
+        ->using(PerguntaCargo::class) // Use a model de pivot personalizada
+        ->withPivot('required'); // Outras colunas pivot, se necessário
+    }
+
     public function funcoes()
     {
         return $this->belongsToMany(Funcao::class, 'pergunta_funcao', 'pergunta_id', 'funcao_id');
     }
 
-    public function cargos()
-    {
-        return $this->belongsToMany(Funcao::class, 'pergunta_cargo', 'pergunta_id', 'cargo_id');
-    }
+    // public function cargos()
+    // {
+    //     return $this->belongsToMany(Funcao::class, 'pergunta_cargo', 'pergunta_id', 'cargo_id');
+    // }
     
 
     public function respostas()

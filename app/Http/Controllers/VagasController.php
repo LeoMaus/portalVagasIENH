@@ -64,7 +64,7 @@ class VagasController extends Controller
         $setores = Area::all();
         $cargos = Cargo::all();
 
-       // Localizar vínculo na tabela pergunta_vaga de acordo com a vaga que será editada
+        // Localizar vínculo na tabela pergunta_vaga de acordo com a vaga que será editada
         $perguntasVinculadas = PerguntaVaga::where('vaga_id', $vaga->id)->get();
 
         // Obter os IDs das perguntas vinculadas
@@ -72,7 +72,7 @@ class VagasController extends Controller
 
         // Buscar as perguntas correspondentes usando os IDs
         $perguntas = Pergunta::whereIn('id', $idsPerguntas)->get();
-       
+
         if (!$vaga) {
             return redirect()
                 ->route('vaga.index')
@@ -86,13 +86,13 @@ class VagasController extends Controller
     {
         // Lógica para editar a vaga com o ID fornecido
         $vaga = Vaga::find($id);
-    
+
         if (!$vaga) {
             return redirect()
                 ->route('vaga.index')
                 ->with('error', 'Vaga não encontrada.');
         }
-    
+
         // Captura os valores antigos antes da alteração
         $oldValues = [
             'titulo' => $vaga->titulo,
@@ -108,10 +108,10 @@ class VagasController extends Controller
             'situacao_vaga' => $vaga->situacao_vaga,
             'salario' => $vaga->salario,
         ];
-    
+
         // Registra as alterações a serem feitas
         $changedFields = [];
-    
+
         // Atualiza os valores da vaga e verifica alterações
         foreach ($oldValues as $key => $oldValue) {
             $newValue = $request->input($key);
@@ -123,7 +123,7 @@ class VagasController extends Controller
                 ];
             }
         }
-    
+
         // Se houver alterações, registra no log
         if (!empty($changedFields)) {
             $logEntry = [
@@ -131,14 +131,14 @@ class VagasController extends Controller
                 'usuario_id' => $request->input('user_id'), // ID do usuário que fez a alteração
                 'alteracoes' => $changedFields,
             ];
-    
+
             // Atualiza o campo log_alteracoes
             $vaga->log_alteracoes .= ' | ' . json_encode($logEntry);
         }
-    
+
         // Salva a vaga atualizada
         $vaga->save();
-    
+
         // Atualiza as funções associadas à vaga
         $funcoes = $request->input('funcoes', []); // Obtenha as funções, ou um array vazio
         $vaga->funcoes()->sync($funcoes); // Associe as funções à nova vaga
@@ -152,25 +152,24 @@ class VagasController extends Controller
 
         $pergunta->update($data);
         $pergunta->vagas()->sync($request->input('vagas', []));
-        
-    
+
+
         return redirect()
             ->route('vaga.index')
             ->with('success', 'Vaga editada com sucesso.');
     }
-    
+
 
 
     public function store(Request $request)
     {
         Log::info('Início do método store', ['dadosRecebidos' => $request->all()]);
-    
+
         // Validação dos dados recebidos
         $validated = $request->validate([
             'titulo' => 'required|string|max:255',
             'unidade' => 'required|exists:unidade_negocio,id',
             'setor' => 'required|exists:area,id',
-            'cargo' => 'required|exists:cargo,id',
             'descricao' => 'required|string',
             'data_inicio_vigencia' => 'required|date',
             'data_termino_vigencia' => 'required|date',
@@ -181,11 +180,13 @@ class VagasController extends Controller
             'salario' => 'required|numeric',
             'funcoes' => 'array',
             'funcoes.*' => 'exists:funcao,id',
+            'cargos' => 'array',
+            'cargos.*' => 'exists:cargo,id',
             'user_id' => 'required|exists:users,id',
         ]);
-    
+
         Log::info('Validação concluída', ['dadosValidados' => $validated]);
-    
+
         try {
             // Criação da nova vaga
             $vaga = Vaga::create([
@@ -194,7 +195,6 @@ class VagasController extends Controller
                 'descricao' => $request->input('descricao'),
                 'id_un' => $request->input('unidade'),
                 'setor_responsavel_id' => $request->input('setor'),
-                'cargo_id' => $request->input('cargo'),
                 'data_inicio_vigencia' => $request->input('data_inicio_vigencia'),
                 'data_termino_vigencia' => $request->input('data_termino_vigencia'),
                 'prazo_contratacao' => $request->input('prazo_contratacao'),
@@ -204,21 +204,26 @@ class VagasController extends Controller
                 'usuario_criacao_id' => $request->input('user_id'),
             ]);
             Log::info('Vaga criada com sucesso', ['vagaId' => $vaga->id]);
-    
+
             // Cadastra a relação entre vaga e funções
             $funcoes = $request->input('funcoes', []);
             $vaga->funcoes()->attach($funcoes);
             Log::info('Funções associadas à vaga', ['funcoes' => $funcoes]);
-    
+
+            // Cadastra a relação entre vaga e cargos
+            $cargos = $request->input('cargos', []);
+            $vaga->cargos()->attach($cargos);
+            Log::info('Cargos associados à vaga', ['cargos' => $cargos]);
+
             // Busca o nome da unidade com base no ID recebido no request
             $unidade = UnidadeNegocio::find($request->input('unidade'));
             Log::info('Unidade encontrada', ['unidade' => $unidade]);
-    
+
             // Busca o email no banco de dados
             $email = Email::where('template', 'abertura_vaga')->first();
             $destinatarios = json_decode($email->email);
             Log::info('Destinatários de email encontrados', ['destinatarios' => $destinatarios]);
-    
+
             // Envia o email após a inclusão
             if ($request->input('status') == 'Aberta') {
                 Mail::to($destinatarios)->send(new \App\Mail\NovoRegistroEmail(
@@ -235,14 +240,13 @@ class VagasController extends Controller
                 'options'    => ($request->input('text_resp') == True ? null : $request->input('options')),
                 'mult_resps' => ($request->input('text_resp') == True ? null : ($request->input('mult_resps') == True)),
             ];
-    
+
             $pergunta = new Pergunta($data);
             $pergunta->save();
 
             // Cadastra a relação entre pergunta e vaga
             $pergunta->vagas()->attach($vaga->id);
             Log::info('Pergunta associada à vaga', ['pergunta' => $pergunta]);
-    
         } catch (\Exception $e) {
             Log::error('Erro ao criar vaga ou enviar email', [
                 'message' => $e->getMessage(),
@@ -252,13 +256,55 @@ class VagasController extends Controller
                 ->route('vaga.index')
                 ->with('error', 'Erro ao adicionar vaga.');
         }
-    
+
         return redirect()
             ->route('vaga.index')
             ->with('success', 'Vaga adicionada com sucesso.');
     }
-    
 
 
- 
+
+    public function pesquisaVaga(Request $request)
+    {
+        // Recebe todos os filtros do formulário
+        $nome = $request->input('nome');
+        $area = $request->input('area');
+        $tipoVaga = $request->input('tipo_vaga');
+        $localTrabalho = $request->input('local_trabalho');
+        $quantidadeVagas = Vaga::count();
+
+        // Carrega todas as áreas para exibir no filtro da view
+        $areas = Area::all();
+
+        // Inicia a query base para Vaga
+        $query = Vaga::query();
+
+        // Aplica filtro por nome, se fornecido
+        if (!empty($nome)) {
+            $query->where('titulo', 'like', '%' . $nome . '%');
+            $quantidadeVagas = $query->count();
+        }
+
+        // Aplica filtro por área, se fornecido
+        if (!empty($area)) {
+            $query->where('setor_responsavel_id', $area);
+            $quantidadeVagas = $query->count();
+        }
+
+        // Aplica filtro por tipo de vaga, se fornecido
+        if (!empty($tipoVaga)) {
+            $query->where('tipo_vaga', $tipoVaga);
+            $quantidadeVagas = $query->count();
+        }
+
+        // // Aplica filtro por local de trabalho, se fornecido
+        // if (!empty($localTrabalho)) {
+        //     $query->where('local_trabalho', $localTrabalho);
+        // }
+
+        // Executa a query e obtém os resultados
+        $vagas = $query->get();
+
+        return view('home', compact('vagas', 'areas', 'quantidadeVagas'));
+    }
 }

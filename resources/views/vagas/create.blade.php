@@ -83,20 +83,18 @@
                         </div>
 
                         <!-- selecionar cargo -->
-                        <div class="form-group mb-2">
-                            <label for="cargo">{{ __('Cargo') }}</label>
-                            
-                            <select class="form-select form-select-md mb-3" aria-label="Large select example" id="cargo" type="cargo" class="form-control @error('cargo') is-invalid @enderror" name="cargo" value="{{ old('cargo') }}" required autocomplete="cargo">
-                            @foreach($cargos as $cargo)
-                                <option value="{{$cargo->id}}">{{$cargo->nome}}</option>
-                            @endforeach
-                            </select>
-
-                            @error('cargo')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                        <label for="funcoes">Vincular vaga a cargo:</label>
+                        <a href="#" data-toggle="collapse" data-target="#cargos-collapse">Mostrar cargos</a>
+                            <div id="cargos-collapse" class="collapse">
+                                <div class="list-group">
+                                    @foreach ($cargos as $cargo)
+                                        <label class="list-group-item">
+                                            <input type="checkbox" name="cargos[]" value="{{ $cargo->id }}" class="form-check-input" {{isset($vagaCargos) && in_array($cargo->id, $vagaCargos) ? 'checked' : '' }} >
+                                            {{ $cargo->nome }}
+                                        </label>
+                                @endforeach
+                                </div>
+                            </div>
                         </div>
 
                         <!-- <div class="form-group mb-2">

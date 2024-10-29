@@ -63,4 +63,9 @@ class Vaga extends Model
     {
         return $this->belongsToMany(Funcao::class, 'vaga_funcao', 'vaga_id', 'funcao_id');
     }
+
+    public function cargos()
+    {
+        return $this->belongsToMany(Cargo::class, 'vaga_cargo', 'vaga_id', 'cargo_id');
+    }
 }

@@ -27,7 +27,8 @@ class HomeController extends Controller
     {
         $vagas = Vaga::all();
         $areas = Area::all();
+        $quantidadeVagas = Vaga::count();
 
-        return view('home', ['vagas' => $vagas, 'areas' => $areas]);
+        return view('home', ['vagas' => $vagas, 'areas' => $areas, 'quantidadeVagas' => $quantidadeVagas]);
     }
 }

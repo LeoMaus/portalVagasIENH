@@ -65,6 +65,7 @@ Route::group(['middleware' => 'auth'], function () {
         $class = Controllers\VagasController::class;
         Route::name('index')   ->get('',                [$class, 'index']);
         Route::name('create')  ->get('create',          [$class, 'create']);
+        Route::name('pesquisaVaga')    ->get('pesquisa',     [$class, 'pesquisaVaga']);
         Route::name('show')    ->get('{vaga}',          [$class, 'show']);
         Route::name('edit')    ->get('{vaga}/edit',     [$class, 'edit']);
         Route::name('store')   ->post('',               [$class, 'store']);

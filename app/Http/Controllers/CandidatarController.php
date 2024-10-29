@@ -10,6 +10,10 @@ use App\Models\Resposta;
 use App\Models\User;
 use App\Models\CandidaturaVaga;
 use App\Models\PerguntaFuncao;
+use App\Models\PerguntaVaga;
+use App\Models\Funcao;
+use App\Models\Cargo;
+use App\Models\PerguntaCargo;
 
 class CandidatarController extends Controller
 {
@@ -24,20 +28,26 @@ class CandidatarController extends Controller
         $userId = auth()->user();
         $vaga = Vaga::find($vagaId);
         //array de funcões da vaga
-        $funcoes = $vaga->funcoes()->pluck('funcao.id');
+        // $funcoes = $vaga->funcoes()->pluck('funcao.id');
+
+        //array de cargos da vaga
+        $cargos = $vaga->cargos()->pluck('cargo.id');
 
         // Recupere as perguntas associadas à vaga com o ID igual a $vagaId
-        // $perguntas = Pergunta::whereHas('vagas', function ($query) use ($vagaId) {
-        //     $query->where('vaga_id', $vagaId);
-        // })->get();
+        $perguntasVaga = Pergunta::whereHas('vagas', function ($query) use ($vagaId) {
+            $query->where('vaga_id', $vagaId);
+        });
 
-        // Recupere as perguntas associadas à função ao qual a vaga está associada
-        $perguntas = Pergunta::whereHas('funcoes', function ($query) use ($vaga) {
-            // Especifica a tabela na cláusula where
-            $query->select('funcao.id')
-                  ->whereIn('funcao.id', $vaga->funcoes()->pluck('funcao.id'));
-        })->get();
-        
+        // Recupere as perguntas associadas ao cargo ao qual a vaga está associada
+        $perguntasCargo = Pergunta::whereHas('cargos', function ($query) use ($vaga) {
+            $query->whereIn('cargo.id', $vaga->cargos()->pluck('cargo.id'));
+        });
+
+        // Combina as duas consultas com union e obtém os resultados
+        $perguntas = $perguntasVaga->union($perguntasCargo)->get();
+
+      
+
         
 
 

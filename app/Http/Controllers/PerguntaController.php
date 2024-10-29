@@ -6,6 +6,7 @@ use App\Models\Pergunta;
 use App\Models\Vaga;
 use App\Models\Cargo;
 use App\Models\PerguntaCargo;
+use App\Models\PerguntaVaga;
 
 class PerguntaController extends Controller
 {
@@ -49,7 +50,12 @@ class PerguntaController extends Controller
 
         $pergunta = new Pergunta($data);
         $pergunta->save();
-        $pergunta->cargos()->attach($request->input('cargos', []));
+        if($request->input('vagas') != null) {
+            $pergunta->vagas()->attach($request->input('vagas', []));
+        }
+        if($request->input('cargos') != null) {
+            $pergunta->cargos()->attach($request->input('cargos', []));
+        }
 
         return redirect()
             ->route('pergunta.show', ['pergunta' => $pergunta->id])
@@ -81,9 +87,11 @@ class PerguntaController extends Controller
     {
         $vagas = Vaga::all();
         $perguntaCargos = PerguntaCargo::where('pergunta_id', $pergunta->id)->pluck('cargo_id')->toArray();
+        $perguntaVagas = PerguntaVaga::where('pergunta_id', $pergunta->id)->pluck('vaga_id')->toArray();
         $cargos = Cargo::all();
+        
 
-        return view('pergunta.form', compact('pergunta', 'vagas', 'perguntaCargos', 'cargos'));
+        return view('pergunta.form', compact('pergunta', 'vagas', 'perguntaCargos', 'cargos', 'perguntaVagas'));
     }
 
     /**
@@ -104,7 +112,9 @@ class PerguntaController extends Controller
         $pergunta->update($data);
 
         // $pergunta->vagas()->sync($request->input('vagas', []));
-        $pergunta->cargos()->sync($request->input('cargos', []));
+            $pergunta->vagas()->sync($request->input('vagas', []));
+            $pergunta->cargos()->sync($request->input('cargos', []));
+        
 
         return redirect()
             ->route('pergunta.show', ['pergunta' => $pergunta->id])
