@@ -31,7 +31,7 @@
                     </div>
                 </div>
 
-                <form method="POST" action="" > 
+                <form method="POST" action=""> 
                 @csrf
                 @method('PUT')
                     <div class="form-group mb-2">
@@ -63,13 +63,14 @@
                     </div>
                 </div>
 
-                <form method="POST" action="{{ route('feedback.store') }}" > 
+                <form method="POST" action="{{ route('feedback.store') }}"> 
                 @csrf
                     <input type="hidden" name="vaga_id" value="{{ $candidatura->vaga->id }}">
                     <input type="hidden" name="user_id" value="{{ $candidatura->user->id }}">
                     <!--- usamos o input abaixo para enviar o candidatura_vaga_id para o store de feedback --->
-                    <input type="hidden" name="candidatura_vaga_id" value="{{ $candidatura->id }}">
 
+                    <input type="hidden" name="candidatura_vaga_id" value="{{ $candidatura->id }}">
+                   
                     <div class="form-group mb-4">
                         <label for="feedback">{{ __('Registro de feedback') }}</label>
                         <textarea id="feedback" type="text" class="form-control" name="feedback" autocomplete="new-feedback" placeholder="Descreva aqui seu feedback sobre este currículo avaliado">{{ isset($candidatura->feedback) ? $candidatura->feedback->feedback_avaliacao : '' }}</textarea>
@@ -96,7 +97,7 @@
             
                     <div class="form-group mb-2 mt-5">
                         <center>
-                            <button type="submit" class="btn btn-principal">
+                            <button type="submit" id="btn-salvar-feedback" class="btn btn-principal">
                                 {{ __('Salvar') }}
                             </button>
                         </center>
@@ -130,7 +131,7 @@
             
                     <div class="form-group mb-2 mt-5">
                         <center>
-                            <button type="submit" class="btn btn-principal">
+                            <button type="submit" id="btn-enviar-retorno" class="btn btn-principal">
                                 {{ __('Enviar retorno') }}
                             </button>
                         </center>
@@ -154,7 +155,7 @@
                     </div>
                 </div>
 
-                <form method="POST" action="{{ route('curriculosVaga.update') }}" > 
+                <form method="POST" action="{{ route('curriculosVaga.update') }}"> 
                 @csrf
                 <div class="form-group mb-2">
                     <label for="status_processo">{{ __('Selecione a vaga a qual deseja transferir este candidato:') }}</label>
@@ -178,7 +179,7 @@
             
                     <div class="form-group mb-2 mt-5">
                         <center>
-                            <button type="submit" class="btn btn-principal">
+                            <button type="submit" id="btn-transferir" class="btn btn-principal">
                                 {{ __('Transferir') }}
                             </button>
                         </center>

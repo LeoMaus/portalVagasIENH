@@ -9,18 +9,15 @@
         <img src="{{ asset('assets/capa.png') }}" alt="Logo" class="capa">
     </div>
 
-
     <div class="col-md-12">
         <h2 class="text-center mt-5"> Vagas da IENH </h2>
         <p class="text-center texto-institucional">A IENH, instituição de ensino com tradição e excelência, está sempre em busca de inovação e crescimento. Em breve, lançaremos novas oportunidades de trabalho para integrar nosso time dedicado à educação de qualidade. Se você deseja fazer parte de um ambiente que valoriza o conhecimento e o desenvolvimento profissional, fique atento às vagas que serão divulgadas. Venha construir o futuro com a gente!</p>
     </div>
 
-
-   
     <div class="row d-flex justify-content-center mt-4">
 
-        <div class="col-md-8">           
-           
+        <div class="col-md-8">
+
             <center>
             @if(session('success'))
                 <div class="alert alert-success">
@@ -40,7 +37,7 @@
             @csrf
             <div class="mb-3">
                 <label for="areaSelect" class="form-label">Área de Atuação</label>
-                <select id="areaSelect" name="area_id" class="form-select" onchange="updateDescription()" >
+                <select id="areaSelect" name="area_id" class="form-select" onchange="updateDescription()">
                     @foreach ($areas as $area)
                         <option value="{{ $area->id }}" data-descricao="{{ $area->descricao }}">{{ $area->nome }}</option>
                     @endforeach
@@ -51,11 +48,10 @@
                 <label for="areaDescricao" class="form-label">Descrição da Área</label>
                 <textarea class="form-control" id="areaDescricao" value="" readonly> </textarea>
             </div>
-                <div class="text-center">
-                    <button type="submit" class="btn btn-principal mt-3">Banco de Talentos</button>
-                </div>
+            <div class="text-center">
+                <button id="submitBancoTalentos" type="submit" class="btn btn-principal mt-3">Banco de Talentos</button>
+            </div>
             </form>
-       
 
             <h2 class="text-center mt-5">Vagas encontradas</h2>
             <div class="row d-flex justify-content-center mt-2">
@@ -76,7 +72,7 @@
                                     <p class="card-text">{{ $vaga->unidade->descricao }}</p>
                                 </div>
                             </div>
-                            <a href="{{ route('login') }}" class="btn btn-principal mt-3"> Candidate-se</a>
+                            <a id="candidateSeBtn" href="{{ route('login') }}" class="btn btn-principal mt-3"> Candidate-se</a>
                         </div>
                     </div>
                 </div>
@@ -88,7 +84,6 @@
                 <center>
                     <img src="{{ asset('assets/2.png') }}" alt="Logo" class="img-logo-footer mb-5 mt-3">
                 </center>
-               
             </div>
         </div>
     </div>

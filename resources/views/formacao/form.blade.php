@@ -47,16 +47,15 @@
                                 <label for="observacao">Observações</label>
                                 <textarea class="form-control" id="observacao" name="observacao" rows="3">{{ $formacao->observacao ?? '' }}</textarea>
                             </div>
-                            <button type="submit" class="btn btn-principal mt-4">Salvar</button>
-                            <a href="{{ route('profile') }}" class="btn btn-secondary  mt-4">Voltar</a>
+                            <button type="submit" class="btn btn-principal mt-4" id="save-button">Salvar</button>
+                            <a href="{{ route('profile') }}" class="btn btn-secondary mt-4" id="back-button">Voltar</a>
                         </form>
                     </div>
                 </div>
                 <div>
                     <center>
-                        <img src="{{ asset('assets/2.png') }}" alt="Logo" class="img-logo-footer mb-5 mt-3">
+                        <img src="{{ asset('assets/2.png') }}" alt="Logo" class="img-logo-footer mb-5 mt-3" id="logo-footer">
                     </center>
-                   
                 </div>
             </div>
         </div>

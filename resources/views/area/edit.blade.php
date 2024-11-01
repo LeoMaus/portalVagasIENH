@@ -2,7 +2,6 @@
 @extends('general')
 @section('content')
 
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8 mt-5">
@@ -24,34 +23,32 @@
 
                         <div class="form-group mb-2">
                             <label for="nome">{{ __('Nome') }}</label>
-                            <input id="nome" type="text" class="form-control @error('nome') is-invalid @enderror" name="nome" value="{{ $area->nome }}" required autocomplete="nome" autofocus>
+                            <input id="nomeInput" type="text" class="form-control @error('nome') is-invalid @enderror" name="nome" value="{{ $area->nome }}" required autocomplete="nome" autofocus>
 
                             @error('nome')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        
                         </div>
 
                         <div class="form-group mb-2">
                             <label for="descricao">{{ __('Descrição') }}</label>
-                            <input id="descricao" type="text" class="form-control @error('descricao') is-invalid @enderror" name="descricao" value="{{ $area->descricao }}" required autocomplete="descricao" autofocus>
+                            <input id="descricaoInput" type="text" class="form-control @error('descricao') is-invalid @enderror" name="descricao" value="{{ $area->descricao }}" required autocomplete="descricao" autofocus>
 
                             @error('descricao')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        
                         </div>
 
                         <div class="form-group mb-2">
                             <center>
-                                <a type="button" href="{{route('area.index')}}" class="btn btn-secondary">
+                                <a type="button" id="voltarButton" href="{{ route('area.index') }}" class="btn btn-secondary">
                                     {{ __('Voltar') }}
                                 </a>
-                                <button type="submit" class="btn btn-principal">
+                                <button type="submit" id="salvarButton" class="btn btn-principal">
                                     {{ __('Salvar') }}
                                 </button>
                             </center>
@@ -63,7 +60,6 @@
                 <center>
                     <img src="{{ asset('assets/2.png') }}" alt="Logo" class="img-logo-footer mb-5 mt-3">
                 </center>
-               
             </div>
         </div>
     </div>

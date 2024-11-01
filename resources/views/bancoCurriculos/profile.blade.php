@@ -9,7 +9,7 @@
                 <div class="card-header">
                     <h3>{{ __('Visualização do Candidato') }}</h3>
                 </div>
-                <class="card-body">
+                <div class="card-body">
                     <!-- Detalhes Pessoais do Candidato -->
                     <h4 class="mb-3">{{ __('Dados Pessoais') }}</h4>
                     <div class="row mb-2">
@@ -90,7 +90,6 @@
                     </table>
                     <br><br>
 
-
                     <!-- Habilidades e Link -->
                     <h4 class="mb-3">{{ __('Habilidades') }}</h4>
                     <p>{{ isset($user->dadosPessoais) ? $user->dadosPessoais->habilidades : 'Nenhuma habilidade adicionada' }}</p>
@@ -99,15 +98,13 @@
                     <p><a href="{{ optional($user->dadosPessoais)->link }}" target="_blank">{{ optional($user->dadosPessoais)->link }}</a></p>
                     
                     <h4 class="mb-3">{{ __('Currículo em PDF') }}</h4>
-
-                    
-                    <a href="{{ route('curriculo.show', [$curriculo->id]) }}" class="btn btn-principal">Visualizar Currículo existente</a>
+                    <a id="viewResumeButton" href="{{ route('curriculo.show', [$curriculo->id]) }}" class="btn btn-principal">Visualizar Currículo existente</a>
 
                     <!-- Botões de Ação -->
                     <div class="row">
                         <div class="col-md-12 text-center">
-                            <a href="{{ route('bancoCurriculos.index') }}" class="btn btn-secondary">{{ __('Voltar à Lista') }}</a>
-                            <!-- <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal">{{ __('Excluir Candidato') }}</button> -->
+                            <a id="backToListButton" href="{{ route('bancoCurriculos.index') }}" class="btn btn-secondary">{{ __('Voltar à Lista') }}</a>
+                            <!--<button id="deleteCandidateButton" type="button" class="btn btn-danger" data-toggle="modal" data-target="#confirmDeleteModal">{{ __('Excluir Candidato') }}</button>-->
                         </div>
                     </div>
                 </div>
@@ -116,7 +113,6 @@
                 <center>
                     <img src="{{ asset('assets/2.png') }}" alt="Logo" class="img-logo-footer mb-5 mt-3">
                 </center>
-               
             </div>
         </div>
     </div>
@@ -137,7 +133,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <form method="POST" action="">
+                <form id="deleteCandidateForm" method="POST" action="">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger">Confirmar</button>

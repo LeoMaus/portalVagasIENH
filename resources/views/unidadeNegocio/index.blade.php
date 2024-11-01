@@ -21,7 +21,7 @@
               <form id="deleteunidadeNegocioForm" method="POST" action="">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger">Confirmar</button>
+                <button type="submit" id="confirmDeleteButton" class="btn btn-danger">Confirmar</button>
               </form>
             </div>
         </div>
@@ -54,10 +54,10 @@
 
           <div class="row">
             <div class="col-md-11">
-                <h4>  {{ __('Unidade de Negócio') }}</h4>
+                <h4>{{ __('Unidade de Negócio') }}</h4>
             </div>
             <div class="col-md-3 mb-3"> 
-              <a href="{{ route('unidadeNegocio.create') }}" class="btn btn-principal">Criar nova unidade de Negócio</a>
+              <a href="{{ route('unidadeNegocio.create') }}" class="btn btn-principal" id="createNewUnitButton">Criar nova unidade de Negócio</a>
             </div>
           </div>
 

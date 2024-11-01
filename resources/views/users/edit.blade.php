@@ -3,7 +3,6 @@
 
 @section('content')
 
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8 mt-5">
@@ -32,7 +31,6 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        
                         </div>
 
                         <div class="form-group mb-2">
@@ -44,11 +42,10 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        
                         </div>
 
                         <div class="form-group mb-2">
-                            <label for="password" >{{ __('Senha') }}</label>
+                            <label for="password">{{ __('Senha') }}</label>
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                             @error('password')
@@ -56,22 +53,21 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        
                         </div>
 
-                    <div class="form-check mt-3">
-                        <input class="form-check-input" type="checkbox" value="admin" id="role" name="role" {{ $user->role == 'admin' ? 'checked' : ''}}>
-                        <label class="form-check-label" for="role">
+                        <div class="form-check mt-3">
+                            <input class="form-check-input" type="checkbox" value="admin" id="role" name="role" {{ $user->role == 'admin' ? 'checked' : ''}}>
+                            <label class="form-check-label" for="role">
                             Administrador
-                        </label>
-                    </div>
+                            </label>
+                        </div>
 
                         <div class="form-group mb-2">
                             <center>
-                                <a type="button" href="{{route('users')}}" class="btn btn-secondary">
+                                <a type="button" href="{{ route('users') }}" class="btn btn-secondary" id="backButton">
                                     {{ __('Voltar') }}
                                 </a>
-                                <button type="submit" class="btn btn-principal">
+                                <button type="submit" class="btn btn-principal" id="saveButton">
                                     {{ __('Salvar') }}
                                 </button>
                             </center>

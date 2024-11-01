@@ -3,7 +3,6 @@
 
 @section('content')
 
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8 mt-5">
@@ -21,7 +20,7 @@
                     @endif
                     <div class="row mb-3">
                         <div class="col-md-9">
-                            <h4>  {{ __('Adicionar usuário') }}</h4>
+                            <h4>{{ __('Adicionar usuário') }}</h4>
                         </div>
                     </div>
                     <form method="POST" action="{{ route('create') }}">
@@ -36,7 +35,6 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        
                         </div>
 
                         <div class="form-group mb-2">
@@ -48,7 +46,6 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        
                         </div>
 
                         <div class="form-row">
@@ -63,8 +60,7 @@
                                     <label class="form-check-label" for="inlineRadio2">Pessoa Jurídica</label>
                                 </div>
                             </div>
-                            
-                        
+
                             <!-- Campo CPF/CNPJ -->
                             <div class="col mb-3" id="cpfCnpjContainer" style="display:none;">
                                 <label for="cpfCnpjInput" id="cpfCnpjLabel">CPF</label>
@@ -73,7 +69,7 @@
                         </div>
 
                         <div class="form-group mb-2">
-                            <label for="password" >{{ __('Senha') }}</label>
+                            <label for="password">{{ __('Senha') }}</label>
                             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                             @error('password')
@@ -81,7 +77,6 @@
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        
                         </div>
 
                         <div class="form-group mb-4">
@@ -90,18 +85,18 @@
                         </div>
 
                         <div class="form-check mt-3">
-                            <input class="form-check-input" type="checkbox" value="admin" id="role" for="role" name="role">
-                            <label class="form-check-label" for="flexCheckDefault">
+                        <input class="form-check-input" type="checkbox" value="admin" id="role" for="role" name="role">
+                        <label class="form-check-label" for="flexCheckDefault">
                                 Administrador
                             </label>
                         </div>
 
                         <div class="form-group mb-2">
                             <center>
-                                <a type="button" href="{{route('users')}}" class="btn btn-secondary">
+                                <a type="button" href="{{route('users')}}" class="btn btn-secondary" id="backButton">
                                     {{ __('Voltar') }}
                                 </a>
-                                <button type="submit" class="btn btn-principal">
+                                <button type="submit" id="saveButton" class="btn btn-principal">
                                     {{ __('Salvar') }}
                                 </button>
                             </center>

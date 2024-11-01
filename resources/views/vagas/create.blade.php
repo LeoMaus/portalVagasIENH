@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @extends('general')
+
 @section('content')
 
 <div class="container">
@@ -14,7 +15,7 @@
                     @endif
                     <div class="row mb-3">
                         <div class="col-md-9">
-                            <h4>  {{ __('Cadastrar vaga') }}</h4>
+                            <h4>{{ __('Cadastrar vaga') }}</h4>
                         </div>
                     </div>
                     <form method="POST" action="{{ route('vaga.store') }}">
@@ -77,11 +78,10 @@
                                             <input type="checkbox" name="funcoes[]" value="{{ $funcao->id }}" class="form-check-input" {{isset($vagaFuncoes) && in_array($funcao->id, $vagaFuncoes) ? 'checked' : '' }} >
                                             {{ $funcao->nome }}
                                         </label>
-                                @endforeach
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
-
                         <!-- selecionar cargo -->
                         <label for="funcoes">Vincular vaga a cargo:</label>
                         <a href="#" data-toggle="collapse" data-target="#cargos-collapse">Mostrar cargos</a>
@@ -92,7 +92,7 @@
                                             <input type="checkbox" name="cargos[]" value="{{ $cargo->id }}" class="form-check-input" {{isset($vagaCargos) && in_array($cargo->id, $vagaCargos) ? 'checked' : '' }} >
                                             {{ $cargo->nome }}
                                         </label>
-                                @endforeach
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -112,7 +112,6 @@
                             @enderror
                         
                         </div> -->
-
                         <div class="form-group mb-4">
                             <label for="descricao">{{ __('Descrição da vaga') }}</label>
                             <textarea id="descricao" class="form-control @error('descricao') is-invalid @enderror" name="descricao" placeholder="Descreva aqui a vaga" required>{{ old('descricao') }}</textarea>
@@ -145,7 +144,6 @@
                                 </span>
                             @enderror
                         </div>
-
                         <!-- prazo para contratação -->
                         <div class="form-group mb-2">
                             <label for="prazo_contratacao">{{ __('Prazo para contratação') }}</label>
@@ -157,7 +155,6 @@
                                 </span>
                             @enderror
                         </div>
-
                         <!-- tipo de vaga -->
                         <div class="form-group mb-2">
                             <label for="tipo_vaga">{{ __('Tipo de contrato') }}</label>
@@ -176,7 +173,6 @@
                                 </span>
                             @enderror
                         </div>
-
                         <!-- situação  Rascunho, Pendente, Em Aprovação, Aprovada, Publicada, Encerrada, Cancelada, Suspensa;-->
                         <div class="form-group mb-2">
                             <label for="situacao">{{ __('Situação') }}</label>
@@ -198,14 +194,13 @@
                                 </span>
                             @enderror
                         </div>
-
                         <!-- ativo -->
-                        <div class="form-group  mb-2">
+                        <div class="form-group mb-2">
                             <label for="ativo">{{ __('Ativo') }}</label>
                             
                             <select class="form-select form-select-md mb-3" aria-label="Large select example" id="ativo" type="ativo" class="form-control @error('ativo') is-invalid @enderror" name="ativo" value="{{ old('ativo') }}" required autocomplete="ativo">
-                                <option value="Sim" selected>Sim </option>
-                                <option value="Não">Não</option>
+                            <option value="Sim" selected>Sim </option>
+                            <option value="Não">Não</option>
                             </select>
 
                             @error('ativo')
@@ -215,8 +210,8 @@
                             @enderror
                         </div>
 
-                        <!-- salário -->
-                        <div class="form-group mb-2">
+  <!-- salário -->
+  <div class="form-group mb-2">
                             <label for="salario">{{ __('Salário') }}</label>
                             <input id="salario" type="text" class="form-control @error('salario') is-invalid @enderror" name="salario" value="{{ old('salario') }}" required autocomplete="salario" autofocus>
 

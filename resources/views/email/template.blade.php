@@ -63,7 +63,7 @@
                                         @foreach($email->EmailList ?? array() as $option)
                                             <tr>
                                                 <td class='opcoes'>{{ $option }}</td>
-                                                <td><button type="button" class="btn btn-danger" onclick="removeOpt(this)">Excluir</button></td>
+                                                <td><button type="button" class="btn btn-danger" id="remove-option-button" onclick="removeOpt(this)">Excluir</button></td>
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -72,7 +72,7 @@
                     @endif
                     <div class="form-group">
                     <!-- Botão de Salvar -->
-                    <button type="submit" class="btn btn-principal">Salvar</button>
+                    <button type="submit" class="btn btn-principal" id="save-button">Salvar</button>
                     </form>
             </div>
             </div>

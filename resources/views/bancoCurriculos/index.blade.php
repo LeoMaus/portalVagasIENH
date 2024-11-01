@@ -20,7 +20,7 @@
               <form id="deleteInteresseForm" method="POST" action="">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger">Confirmar</button>
+                <button id="confirmDeleteButton" type="submit" class="btn btn-danger">Confirmar</button>
               </form>
             </div>
         </div>
@@ -71,7 +71,7 @@
                   <td class='actions'>
                     <!-- botao para visualizar o perfil do candidato -->
                     <a href="{{ route('bancoCurriculos.profile', $area->user->id) }}" class="btn btn-primary btn-sm">Visualizar perfil</a>
-                </td>
+                  </td>
                 </tr>
                 @endforeach
               </tbody>

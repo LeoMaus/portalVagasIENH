@@ -16,11 +16,11 @@
                 Tem certeza de que deseja apagar sua conta?
                 </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button id= "cancelButton" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 <form id="deleteUserForm" method="POST" action="">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Confirmar</button>
+                    <button id="confirmButton" type="submit" class="btn btn-danger">Confirmar</button>
                 </form>
                 </div>
             </div>

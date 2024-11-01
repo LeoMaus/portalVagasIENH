@@ -2,7 +2,6 @@
 @extends('general')
 @section('content')
 
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8 mt-5">
@@ -15,7 +14,7 @@
                     @endif
                     <div class="row mb-3">
                         <div class="col-md-9">
-                            <h4>  {{ __('Editar cargo') }}</h4>
+                            <h4>{{ __('Editar cargo') }}</h4>
                         </div>
                     </div>
                     <form method="POST" action="{{ route('cargo.update', $cargo->id) }}">
@@ -68,14 +67,12 @@
                             @endforeach
                         </select>
 
-                        
-
                         <div class="form-group mb-2">
                             <center>
-                                <a type="button" href="{{route('cargo.index')}}" class="btn btn-secondary">
+                                <a id="voltar" type="button" href="{{route('cargo.index')}}" class="btn btn-secondary">
                                     {{ __('Voltar') }}
                                 </a>
-                                <button type="submit" class="btn btn-principal">
+                                <button id="salvar" type="submit" class="btn btn-principal">
                                     {{ __('Salvar') }}
                                 </button>
                             </center>
@@ -87,7 +84,6 @@
                 <center>
                     <img src="{{ asset('assets/2.png') }}" alt="Logo" class="img-logo-footer mb-5 mt-3">
                 </center>
-               
             </div>
         </div>
     </div>

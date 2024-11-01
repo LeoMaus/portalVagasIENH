@@ -9,19 +9,19 @@
         <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Exclusão</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <button type="button" id="closeModalButton" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              Tem certeza de que deseja excluir esta area?
+              Tem certeza de que deseja excluir esta área?
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+              <button type="button" id="cancelButton" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
               <form id="deleteareaForm" method="POST" action="">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger">Confirmar</button>
+                <button type="submit" id="confirmDeleteButton" class="btn btn-danger">Confirmar</button>
               </form>
             </div>
         </div>
@@ -51,10 +51,10 @@
 
           <div class="row">
               <div class="col-md-11">
-                  <h4>  {{ __('Área de atuação') }}</h4>
+                  <h4>{{ __('Área de atuação') }}</h4>
               </div>
               <div class="col-md-3 mb-3"> 
-                <a href="{{ route('area.create') }}" class="btn btn-principal" >Criar nova area</a>
+                <a href="{{ route('area.create') }}" id="createNewAreaButton" class="btn btn-principal">Criar nova área</a>
               </div>
           </div>
           <div class="table-responsive col-md-12">
@@ -64,19 +64,18 @@
                   <th>Nome</th>
                   <th>Descrição</th>
                   <th>Data Criação</th>
-
                   <th class="actions">Ações</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   @foreach ($areas as $area)
-                  <td>{{ $area->nome }} </td>
+                  <td>{{ $area->nome }}</td>
                   <td>{{ $area->descricao }}</td>
-                  <td>{{$area->created_at}}</td>
+                  <td>{{ $area->created_at }}</td>
                   <td class='actions'>
-                    <a class='btn btn-warning btn-xs' href="{{ route('area.edit', ['area' => $area->id]) }}"><span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Editar</a>
-                    <a class='btn btn-danger btn-xs delete-area-btn' href='#' data-toggle='modal' data-target='#confirmDeleteModal' data-url="{{ route('area.destroy', ['area' => $area->id]) }}"><span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Excluir</a>
+                    <a class='btn btn-warning btn-xs' id="editAreaButton_{{ $area->id }}" href="{{ route('area.edit', ['area' => $area->id]) }}">Editar</a>
+                    <a class='btn btn-danger btn-xs delete-area-btn' id="deleteAreaButton_{{ $area->id }}" href='#' data-toggle='modal' data-target='#confirmDeleteModal' data-url="{{ route('area.destroy', ['area' => $area->id]) }}">Excluir</a>
                   </td>
                 </tr>
                 @endforeach
@@ -89,7 +88,6 @@
         <center>
             <img src="{{ asset('assets/2.png') }}" alt="Logo" class="img-logo-footer mb-5 mt-3">
         </center>
-       
     </div>
   </div>
 </div>

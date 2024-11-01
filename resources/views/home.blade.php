@@ -9,17 +9,14 @@
         <img src="{{ asset('assets/capa.png') }}" alt="Logo" class="capa">
     </div>
 
-
     <div class="col-md-12">
         <h2 class="text-center mt-5"> Vagas da IENH </h2>
         <p class="text-center texto-institucional">A IENH, instituição de ensino com tradição e excelência, está sempre em busca de inovação e crescimento. Em breve, lançaremos novas oportunidades de trabalho para integrar nosso time dedicado à educação de qualidade. Se você deseja fazer parte de um ambiente que valoriza o conhecimento e o desenvolvimento profissional, fique atento às vagas que serão divulgadas. Venha construir o futuro com a gente!</p>
     </div>
 
-
     <div class="row d-flex justify-content-center mt-4">
 
         <div class="col-md-8">
-
 
             <center>
                 @if(session('success'))
@@ -52,7 +49,7 @@
                     <textarea class="form-control" id="areaDescricao" value="" readonly> </textarea>
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-principal mt-3">Banco de Talentos</button>
+                    <button id="submitBancoTalentos" type="submit" class="btn btn-principal mt-3">Banco de Talentos</button>
                 </div>
             </form>
 
@@ -63,14 +60,14 @@
                     @csrf
                         <!-- Barra de pesquisa -->
                         <div class="input-group mb-3">
-                            <input type="text" name="nome" class="form-control" placeholder="Digite o nome da vaga" aria-label="Nome da vaga">
-                            <button type="submit" class="btn btn-principal mt-0 mb-0">🔍</button>
+                            <input id="vagaNome" type="text" name="nome" class="form-control" placeholder="Digite o nome da vaga" aria-label="Nome da vaga">
+                            <button id="pesquisaVaga" type="submit" class="btn btn-principal mt-0 mb-0">🔍</button>
                         </div>
 
                         <!-- Filtros -->
                         <div class="row g-3 mb-3">
                             <div class="col-md-4">
-                                <select name="tipo_vaga" class="form-select" aria-label="Tipo de Vaga">
+                                <select id="tipoVaga" name="tipo_vaga" class="form-select" aria-label="Tipo de Vaga">
                                     <option selected value="">Tipo de Vaga</option>
                                     <option value="1">Estágio</option>
                                     <option value="2">Temporário</option>
@@ -78,7 +75,7 @@
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <select name="local_trabalho" class="form-select" aria-label="Local de Trabalho">
+                                <select id="localTrabalho" name="local_trabalho" class="form-select" aria-label="Local de Trabalho">
                                     <option selected value="">Local de Trabalho</option>
                                     <option value="1">Presencial</option>
                                     <option value="2">Remoto</option>
@@ -86,7 +83,7 @@
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <select name="area" class="form-select" aria-label="Área">
+                                <select id="areaFiltro" name="area" class="form-select" aria-label="Área">
                                     <option selected value="">Área</option>
                                     @foreach ($areas as $area)
                                     <option value="{{ $area->id }}">{{ $area->nome }}</option>
@@ -102,9 +99,6 @@
                     </form>
                 </div>
             </div>
-
-
-
 
             <h2 class="text-center mt-5">Vagas encontradas</h2>
             <!-- Centralizar os cards e diminuir o espaçamento entre eles -->

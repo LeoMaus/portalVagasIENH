@@ -39,12 +39,12 @@
                             <div class="form-group">
                                 <label>Filtros:</label>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="filtro_ensino_superior" value="1" {{ request('filtro_ensino_superior') == '1' ? 'checked' : '' }}>
-                                    <label class="form-check-label">Com Ensino Superior</label>
+                                    <input id="filtro_ensino_superior" class="form-check-input" type="checkbox" name="filtro_ensino_superior" value="1" {{ request('filtro_ensino_superior') == '1' ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="filtro_ensino_superior">Com Ensino Superior</label>
                                 </div>
                                 <!-- Adicione outros filtros conforme necessário -->
 
-                                <button type="submit" class="btn btn-principal">Filtrar</button>
+                                <button id="filtrar-btn" type="submit" class="btn btn-principal">Filtrar</button>
                             </div>
                         </form>
 
@@ -63,7 +63,6 @@
                             </thead>
                             <tbody>
                                 @foreach ($vaga->candidaturas as $candidatura)
-                                  
                                         <tr>
                                             <td>{{ $candidatura->user->name }}</td>
                                             <td>

@@ -5,7 +5,6 @@
 
 <div class="container">
 
-
 <div class="row justify-content-center">
 
     <div class="col-md-12 mt-5">
@@ -41,7 +40,7 @@
                         <p class="card-text">
                             Visualize e edite o modelo de e-mail para notificar a abertura de uma nova vaga.
                         </p>
-                        <a href="{{ route('email.editar.modelo.email', ['template' => 'abertura_vaga']) }}" class="btn btn-principal">Editar</a>
+                        <a href="{{ route('email.editar.modelo.email', ['template' => 'abertura_vaga']) }}" class="btn btn-principal" id="editOpenPositionButton">Editar</a>
                     </div>
                 </div>
 
@@ -51,7 +50,7 @@
                         <p class="card-text">
                             Visualize e edite o modelo de e-mail para dar retorno ao candidato sobre sua candidatura.
                         </p>
-                        <a href="{{ route('email.editar.modelo.email', ['template' => 'retorno_candidato']) }}" class="btn btn-principal">Editar</a>
+                        <a href="{{ route('email.editar.modelo.email', ['template' => 'retorno_candidato']) }}" class="btn btn-principal" id="editCandidateResponseButton">Editar</a>
                     </div>
                 </div>
             </div>
@@ -59,6 +58,5 @@
         </div>
     </div>
 </div>
-
 
 @endsection

@@ -17,7 +17,7 @@
                         @csrf
 
                         <div class="form-group mb-2">                          
-                            <input id="email" type="email" class="form-control input @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="{{ __('Email') }}">
+                            <input id="login-email" type="email" class="form-control input @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="{{ __('Email') }}">
 
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -28,7 +28,7 @@
                         </div>
 
                         <div class="form-group">
-                            <input id="password" type="password" class="form-control input @error('password') is-invalid @enderror" name="password" required autocomplete="current-password"    placeholder="{{ __('Senha') }}">
+                            <input id="password" type="password" class="form-control input @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="{{ __('Senha') }}">
 
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -53,7 +53,7 @@
                         <div class="row mb-0">
                             <center>
                                 <div class="col-md-8">
-                                    <button type="submit" class="btn btn-principal">
+                                    <button id="login-button" type="submit" class="btn btn-principal">
                                         {{ __('Acessar') }}
                                     </button>
                                 </div>
@@ -73,7 +73,6 @@
                 <center>
                     <img src="{{ asset('assets/2.png') }}" alt="Logo" class="img-logo-footer mb-5 mt-3">
                 </center>
-               
             </div>
         </div>
     </div>

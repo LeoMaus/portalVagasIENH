@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-md-6 mt-5">
             <div class="card">
-            <div class="card-text text-center  mt-2">
+                <div class="card-text text-center mt-2">
                     <img src="{{ asset('assets/1.png') }}" alt="Logo" class="img-logo">
                     <div class="text-center" style="font-size: 18px">{{ __('Recuperar senha') }}</div>
                 </div>
@@ -35,7 +35,7 @@
 
                         <div class="row mb-0 mt-4">
                             <center>
-                                <button type="submit" class="btn btn-principal">
+                                <button id="recover-password-button" type="submit" class="btn btn-principal">
                                     {{ __('Recuperar senha') }}
                                 </button>
                             </center>
@@ -47,7 +47,6 @@
                 <center>
                     <img src="{{ asset('assets/2.png') }}" alt="Logo" class="img-logo-footer mb-5 mt-3">
                 </center>
-               
             </div>
         </div>
     </div>

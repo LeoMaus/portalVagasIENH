@@ -264,7 +264,7 @@
                                             @foreach($pergunta->optionsList ?? [] as $option)
                                                 <tr>
                                                     <td class='opcoes'>{{ $option }}</td>
-                                                    <td><button type="button" class="btn btn-danger" onclick="removeOpt(this)">Excluir</button></td>
+                                                    <td><button id="deleteButton" type="button" class="btn btn-danger" onclick="removeOpt(this)">Excluir</button></td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -283,10 +283,10 @@
 
                         <div class="form-group mb-2">
                             <center>
-                                <a type="button" href="{{route('vaga.index')}}" class="btn btn-secondary">
+                                <a id="BackButton" type="button" href="{{route('vaga.index')}}" class="btn btn-secondary">
                                     {{ __('Voltar') }}
                                 </a>
-                                <button type="submit" class="btn btn-principal">
+                                <button id="SaveButton" type="submit" class="btn btn-principal">
                                     {{ __('Salvar') }}
                                 </button>
                             </center>

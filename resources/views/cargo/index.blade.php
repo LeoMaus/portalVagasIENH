@@ -21,7 +21,7 @@
               <form id="deletecargoForm" method="POST" action="">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger">Confirmar</button>
+                <button type="submit" class="btn btn-danger" id="confirmDeleteButton">Confirmar</button>
               </form>
             </div>
         </div>
@@ -29,13 +29,13 @@
   </div>
   <br><br>
   @if(session('success'))
-      <div class="alert alert-success">
+      <div class="alert alert-success" id="successAlert">
         {{ session('success') }}
       </div>
   @endif
 
   @if(session('error'))
-      <div class="alert alert-danger">
+      <div class="alert alert-danger" id="errorAlert">
         {{ session('error') }}
       </div>
   @endif
@@ -44,7 +44,7 @@
       <div class="card">
         <div class="card-body">
           @if (session('status'))
-          <div class="alert alert-success" role="alert">
+          <div class="alert alert-success" role="alert" id="statusAlert">
               {{ session('status') }}
           </div>
           @endif
@@ -54,7 +54,7 @@
                   <h4>  {{ __('Cargos') }}</h4>
               </div>
               <div class="col-md-3 mb-3"> 
-                <a href="{{ route('cargo.create') }}" class="btn btn-principal" >Criar nova cargo</a>
+                <a href="{{ route('cargo.create') }}" class="btn btn-principal" id="createCargoButton">Criar nova cargo</a>
               </div>
           </div>
           <div class="table-responsive col-md-12">
@@ -66,21 +66,21 @@
                   <th>Responsabilidades</th>
                   <th>Área ID</th>
                   <th>Data Criação</th>
-
                   <th class="actions">Ações</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  @foreach ($cargos as $cargo)
+                @foreach ($cargos as $cargo)
+
                   <td>{{ $cargo->nome }} </td>
                   <td>{{ $cargo->descricao }}</td>
                   <td>{{ $cargo->responsabilidades }}</d>
                   <td>{{ $cargo->area_id }}</td>
                   <td>{{$cargo->created_at}}</td>
                   <td class='actions'>
-                    <a class='btn btn-warning btn-xs' href="{{ route('cargo.edit', ['cargo' => $cargo->id]) }}"><span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Editar</a>
-                    <a class='btn btn-danger btn-xs delete-cargo-btn' href='#' data-toggle='modal' data-target='#confirmDeleteModal' data-url="{{ route('cargo.destroy', ['cargo' => $cargo->id]) }}"><span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Excluir</a>
+                    <a class='btn btn-warning btn-xs' href="{{ route('cargo.edit', ['cargo' => $cargo->id]) }}" id="editCargoButton-{{ $cargo->id }}"><span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Editar</a>
+                    <a class='btn btn-danger btn-xs delete-cargo-btn' href='#' data-toggle='modal' data-target='#confirmDeleteModal' data-url="{{ route('cargo.destroy', ['cargo' => $cargo->id]) }}" id="deleteCargoButton-{{ $cargo->id }}"><span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Excluir</a>
                   </td>
                 </tr>
                 @endforeach

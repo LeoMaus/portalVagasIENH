@@ -47,7 +47,7 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-principal">
+                                <button id="reset-password-button" type="submit" class="btn btn-principal">
                                     {{ __('Resetar Senha') }}
                                 </button>
                             </div>
@@ -59,7 +59,6 @@
                 <center>
                     <img src="{{ asset('assets/2.png') }}" alt="Logo" class="img-logo-footer mb-5 mt-3">
                 </center>
-               
             </div>
         </div>
     </div>

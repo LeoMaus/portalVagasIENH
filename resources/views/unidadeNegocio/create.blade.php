@@ -38,14 +38,15 @@
                                 @foreach($empresas as $empresa)
                                     <option value="{{ $empresa->id }}">{{ $empresa->name }}</option>
                                 @endforeach
-                            </select>                            @error('id_empresa')
+                            </select>
+                            @error('id_empresa')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
 
-                            <!-- Radio button UN pai -->
+                        <!-- Radio button UN pai -->
                         <div class="form-group mb-2">
                             <label>{{ __('Essa é uma Unidade de Negócio Pai?') }}</label>
                             <div>
@@ -81,18 +82,14 @@
                         <div class="form-group mb-4 form-check-inline">
                             <label for="ativo">{{ __('Ativo') }}</label><br>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="ativo" id="inlineRadio1" value="1" required
-                                    >
+                                <input class="form-check-input" type="radio" name="ativo" id="inlineRadio1" value="1" required>
                                 <label class="form-check-label" for="inlineRadio1">Sim</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="ativo" id="inlineRadio2" value="0" required
-                                   >
+                                <input class="form-check-input" type="radio" name="ativo" id="inlineRadio2" value="0" required>
                                 <label class="form-check-label" for="inlineRadio2">Não</label>
                             </div>
                         </div>
-
-                       
 
                         <div class="form-group mb-2">
                             <label for="usuario_criacao">{{ __('Usuário Criação') }}</label>
@@ -110,14 +107,13 @@
                             @enderror
                         </div>
 
-                         <!-- Campo oculto para enviar o ID -->
-                         <input id="log" type="hidden" name="log" value="create">
-                        
+                        <!-- Campo oculto para enviar o ID -->
+                        <input id="log" type="hidden" name="log" value="create">
 
                         <div class="form-group mb-2">
                             <center>
-                                <a type="button" href="{{ route('unidadeNegocio.index') }}" class="btn btn-secondary">{{ __('Voltar') }}</a>
-                                <button type="submit" class="btn btn-principal">{{ __('Salvar') }}</button>
+                                <a type="button" id="voltarButton" href="{{ route('unidadeNegocio.index') }}" class="btn btn-secondary">{{ __('Voltar') }}</a>
+                                <button type="submit" id="salvarButton" class="btn btn-principal">{{ __('Salvar') }}</button>
                             </center>
                         </div>
                     </form>

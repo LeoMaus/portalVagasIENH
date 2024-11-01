@@ -45,8 +45,10 @@
                         <div class="form-group mb-2 mt-3">
                             <table class="table table-bordered table-striped">
                                 <thead>
-                                    <td>Respostas</td>
-                                    <td>Quantidade</td>
+                                    <tr>
+                                        <td>Respostas</td>
+                                        <td>Quantidade</td>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($respostas as $resposta)
@@ -64,8 +66,8 @@
 
                     <div class="form-group mb-2">
                         <center>
-                            <a type="button" href="{{route('pergunta.index')}}" class="btn btn-secondary">Voltar</a>
-                            <a type="button" href="{{route('pergunta.edit', ['pergunta' => $pergunta->id])}}" class="btn btn-secondary">Editar</a>
+                            <a type="button" id="voltarButton" href="{{route('pergunta.index')}}" class="btn btn-secondary">Voltar</a>
+                            <a type="button" id="editarButton" href="{{route('pergunta.edit', ['pergunta' => $pergunta->id])}}" class="btn btn-secondary">Editar</a>
                         </center>
                     </div>
 

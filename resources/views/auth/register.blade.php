@@ -7,7 +7,7 @@
     <div class="row justify-content-center mt-5">
         <div class="col-md-6">
             <div class="card">
-                <div class="card-text text-center  mt-2">
+                <div class="card-text text-center mt-2">
                     <img src="{{ asset('assets/logo.jpg') }}" alt="Logo" class="img-logo">
                     <div class="text-center title-page">{{ __('Cadastre-se') }}</div>
                 </div>
@@ -55,7 +55,7 @@
 
                         <div class="form-group mb-2">
                             <center>
-                                <button type="submit" class="btn btn-principal">
+                                <button id="register-button" type="submit" class="btn btn-principal">
                                     {{ __('Registrar') }}
                                 </button>
                             </center>
@@ -66,7 +66,6 @@
                     <center>
                         <img src="{{ asset('assets/2.png') }}" alt="Logo" class="img-logo-footer mb-5 mt-3">
                     </center>
-                   
                 </div>
             </div>
         </div>

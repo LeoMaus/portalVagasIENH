@@ -13,14 +13,14 @@
               </button>
             </div>
             <div class="modal-body">
-              Tem certeza de que cancelar o seu interesse nesta área?
+              Tem certeza de que deseja cancelar o seu interesse nesta área?
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+              <button type="button" id="cancelModalButton" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
               <form id="deleteInteresseForm" method="POST" action="">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger">Confirmar</button>
+                <button type="submit" id="confirmDeleteButton" class="btn btn-danger">Confirmar</button>
               </form>
             </div>
         </div>
@@ -50,7 +50,7 @@
                 </div>
             @endif
               <div class="col-md-11">
-                  <h4>  {{ __('Banco de talentos') }}</h4>
+                  <h4>{{ __('Banco de talentos') }}</h4>
               </div>
           </div>
           <div class="table-responsive col-md-12">
@@ -60,21 +60,20 @@
                   <th>Nome</th>
                   <th>Área de interesse</th>
                   <th>Descrição</th>
-
                   <th class="actions">Ações</th>
                 </tr>
               </thead>
               <tbody>
                 @foreach ($userArea as $area)
                 <tr>
-                  <td>{{ $area->user->name }} </td>
+                  <td>{{ $area->user->name }}</td>
                   <td>{{ $area->area->nome }}</td>
                   <td>{{ $area->area->descricao }}</td>                 
-                  <td class='actions'>
-                    <a class='btn btn-danger btn-sm delete-interesse-btn' href='#' data-toggle='modal' data-target='#confirmDeleteModal' data-url="{{ route('area.interesse.cancel', ['area' => $area->area_id]) }}">
-                        <span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Cancelar interesse
+                  <td class="actions">
+                    <a id="cancelInterestButton-{{ $area->area_id }}" class="btn btn-danger btn-sm delete-interesse-btn" href="#" data-toggle="modal" data-target="#confirmDeleteModal" data-url="{{ route('area.interesse.cancel', ['area' => $area->area_id]) }}">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Cancelar interesse
                     </a>                  
-                </td>
+                  </td>
                 </tr>
                 @endforeach
               </tbody>
@@ -86,7 +85,6 @@
         <center>
             <img src="{{ asset('assets/2.png') }}" alt="Logo" class="img-logo-footer mb-5 mt-3">
         </center>
-       
     </div>
   </div>
 </div>

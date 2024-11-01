@@ -11,16 +11,17 @@
                 Tem certeza de que deseja excluir esta formação?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancel-button">Cancelar</button>
                 <form id="deleteFormacaoForm" method="POST" action="">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Confirmar</button>
+                    <button type="submit" class="btn btn-danger" id="confirm-delete-button">Confirmar</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
 <div class="row justify-content-center">
     <div class="card-body">
         @if (session('status'))
@@ -31,10 +32,10 @@
 
         <div class="row">
             <div class="col-md-10">
-                <h4>  {{ __('Formações') }}</h4>
+                <h4>{{ __('Formações') }}</h4>
             </div>
             <div class="col-md-3 mb-3">
-                <a href="{{ route('formacao.create') }}" class="btn btn-principal" >Inserir nova formação</a>
+                <a href="{{ route('formacao.create') }}" class="btn btn-principal">Inserir nova formação</a>
             </div>
         </div>
         <div class="table-responsive col-md-12">
@@ -65,7 +66,6 @@
         </div>
     </div>
 </div>
-
 
 <script>
     $(document).ready(function () {

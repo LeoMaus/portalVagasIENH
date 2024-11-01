@@ -20,7 +20,7 @@
               <form id="deleteVagaForm" method="POST" action="">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger">Confirmar</button>
+                <button type="submit" id="confirmDeleteButton" class="btn btn-danger">Confirmar</button>
               </form>
             </div>
         </div>
@@ -61,7 +61,6 @@
                   <th>Unidade</th>
                   <th>Descrição</th>
                   <th>Status</th> 
-
                   <th class="actions">Ações</th>
                 </tr>
               </thead>

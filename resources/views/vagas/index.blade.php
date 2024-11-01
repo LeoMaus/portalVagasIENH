@@ -9,7 +9,7 @@
         <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Exclusão</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <button id="closeModal" type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -17,11 +17,11 @@
               Tem certeza de que deseja excluir esta vaga?
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+              <button id="cancelDelete" type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
               <form id="deleteVagaForm" method="POST" action="">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger">Confirmar</button>
+                <button id="confirmDelete" type="submit" class="btn btn-danger">Confirmar</button>
               </form>
             </div>
         </div>
@@ -52,7 +52,7 @@
 
           <div class="row">
               <div class="col-md-11">
-                  <h4>  {{ __('Vagas') }}</h4>
+                  <h4>{{ __('Vagas') }}</h4>
               </div>
               <div class="col-md-3 mb-3"> 
                 <a href="{{ route('vaga.create') }}" class="btn btn-principal" >Criar nova vaga</a>
@@ -70,13 +70,11 @@
                   <th>Término vigência</th>
                   <th>Prazo contratação</th>
                   <th>Salário</th>
-
                   <th class="actions">Ações</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  @foreach ($vagas as $vaga)
+                @foreach ($vagas as $vaga)
                   <td>{{ $vaga->titulo }} </td>
                   <td>{{ $vaga->unidade->descricao }}</td>
                   <td>{{ $vaga->descricao }}</td>
@@ -85,7 +83,6 @@
                   <td>{{ \Carbon\Carbon::parse($vaga->data_termino_vigencia)->format('d/m/y') }}</td>
                   <td>{{ \Carbon\Carbon::parse($vaga->prazo_contratacao)->format('d/m/y') }}</td>
                   <td>{{$vaga->salario}}</td>
-
                   <td class='actions'>
                     <a class='btn btn-warning btn-xs' href="{{ route('vaga.edit', ['vaga' => $vaga->id]) }}"><span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Editar</a>
                     <a class='btn btn-danger btn-xs delete-vaga-btn' href='#' data-toggle='modal' data-target='#confirmDeleteModal' data-url="{{ route('vaga.destroy', ['vaga' => $vaga->id]) }}"><span class='glyphicon glyphicon-ok' aria-hidden='true'></span> Excluir</a>
@@ -102,7 +99,7 @@
         <center>
             <img src="{{ asset('assets/2.png') }}" alt="Logo" class="img-logo-footer mb-5 mt-3">
         </center>
-      </div>
+    </div>
   </div>
 </div>
 
